@@ -4,7 +4,7 @@ lsp.preset("recommended")
 
 require("mason").setup()
 require("mason-lspconfig").setup {
-	ensure_installed = { 'tsserver', 'eslint', 'jsonls', 'jdtls', 'lua_ls', 'rust_analyzer', 'sqlls' }
+	ensure_installed = { 'tsserver', 'eslint', 'jsonls', 'jdtls', 'lua_ls', 'pyright', 'rust_analyzer', 'sqlls' }
 }
 
 local cmp = require('cmp')
