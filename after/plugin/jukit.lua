@@ -1,0 +1,2 @@
+--vim.keymap.set('n', '<cr>', "<nop>")
+--vim.keymap.set('n', '<cr>', ':echo "New command"<cr>')
