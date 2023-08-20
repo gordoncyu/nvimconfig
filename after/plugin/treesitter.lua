@@ -1,3 +1,46 @@
+-- Function to capture the output of a shell command
+function os.capture(cmd, raw)
+    local f = assert(io.popen(cmd, 'r'))
+    local s = assert(f:read('*a'))
+    f:close()
+    if raw then return s end
+    s = string.gsub(s, '^%s+', '')
+    s = string.gsub(s, '%s+$', '')
+    s = string.gsub(s, '[\n\r]+', ' ')
+    return s
+end
+
+-- Function to check if a command exists
+function command_exists(cmd)
+    local status = os.execute(cmd .. " >/dev/null 2>&1")
+    return status == 0
+end
+
+-- Detect GCC version
+local gcc_version_output = os.capture("gcc --version")
+local gcc_version = gcc_version_output:match("%d+%.%d+%.%d+")
+
+-- Default compiler
+local compiler = "gcc"
+
+if gcc_version then
+    local major, minor, mini = gcc_version:match("(%d+)%.(%d+)%.(%d+)")
+    major = tonumber(major)
+    minor = tonumber(minor)
+
+    if major < 5 or (major == 5 and minor < 1) then
+        -- Check if tcc is installed
+        if not command_exists("tcc -v") then
+            error("gcc version < 5.1.0; c++14 not supported. tcc also not found.")
+        else
+            print("gcc version < 5.1.0; falling back on tcc")
+            compiler = "tcc"
+        end
+    end
+end
+
+require'nvim-treesitter.install'.compilers = {compiler} 
+
 require'nvim-treesitter.configs'.setup {
   -- A list of parser names, or "all" (the five listed parsers should always be installed)
   ensure_installed = { "javascript", "typescript", "json", "html", "java", "c_sharp", "cpp", "c", "elixir", "lua", "python", "vim", "vimdoc", "query", "sql", "regex" },
