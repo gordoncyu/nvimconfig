@@ -31,9 +31,9 @@ if gcc_version then
     if major < 5 or (major == 5 and minor < 1) then
         -- Check if tcc is installed
         if not command_exists("tcc -v") then
-            error("gcc version < 5.1.0; c++14 not supported. tcc also not found.")
+            error("treesitter.lua: gcc version < 5.1.0; c++14 not supported. tcc also not found.")
         else
-            print("gcc version < 5.1.0; falling back on tcc")
+            print("treesitter.lua: gcc version < 5.1.0; falling back on tcc")
             compiler = "tcc"
         end
     end
