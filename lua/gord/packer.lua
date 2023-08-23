@@ -45,6 +45,8 @@ return require('packer').startup(function(use)
 
   use('ray-x/lsp_signature.nvim')
 
+  use('sustech-data/wildfire.nvim')
+
   use('ThePrimeagen/vim-be-good')
 
   use('luk400/vim-jukit')
