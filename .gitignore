@@ -1,2 +1,3 @@
 .jukit/
 /plugin/
+/lua/gord/packer_overrides.lua
