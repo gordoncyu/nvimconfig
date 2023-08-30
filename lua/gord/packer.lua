@@ -44,6 +44,9 @@ return require('packer').startup({
             end
         })
 
+        use('fgheng/winbar.nvim')
+        use('feline-nvim/feline.nvim')
+
         use('nvim-treesitter/nvim-treesitter', { run = ':TSUpdate' })
         use('nvim-treesitter/playground')
         use('theprimeagen/harpoon')
