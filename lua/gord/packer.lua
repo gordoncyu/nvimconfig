@@ -44,7 +44,16 @@ return require('packer').startup({
             end
         })
 
-        use('feline-nvim/feline.nvim')
+        use('lewis6991/gitsigns.nvim')
+        use({
+            'feline-nvim/feline.nvim',
+            requires = {
+                'lewis6991/gitsigns.nvim'
+            },
+            config = function()
+                require('feline').setup()
+            end
+        })
         use({
             "utilyre/barbecue.nvim",
             tag = "*",
