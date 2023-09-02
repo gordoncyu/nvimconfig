@@ -8,7 +8,7 @@ end)
 vim.keymap.set('n', '<leader>gc', builtin.git_commits, {})
 vim.keymap.set('n', '<leader>gbc', builtin.git_bcommits, {})
 vim.keymap.set('n', '<leader>gb', builtin.git_branches, {})
-vim.keymap.set('n', '<leader>gs', builtin.git_status, {})
+--vim.keymap.set('n', '<leader>gs', builtin.git_status, {})
 
 local telescope = require('telescope')
 local tactions = require('telescope.actions')

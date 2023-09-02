@@ -18,7 +18,53 @@ local cmp_mappings = lsp.defaults.cmp_mappings({
 })
 
 lsp.setup_nvim_cmp({
-    mapping = cmp_mappings
+    snippet = {
+        -- REQUIRED - you must specify a snippet engine
+        expand = function(args)
+            require('luasnip').lsp_expand(args.body) -- For `luasnip` users.
+        end,
+    },
+    window = {
+        -- completion = cmp.config.window.bordered(),
+        -- documentation = cmp.config.window.bordered(),
+    },
+    mapping = cmp_mappings,
+    sources = cmp.config.sources({
+        { name = 'nvim_lua' },
+        { name = 'nvim_lsp_signature_help' },
+        { name = 'nvim_lsp' },
+        { name = 'luasnip' }, -- For luasnip users.
+        { name = 'path' }
+    }, {
+        { name = 'buffer', keyword_length = 5 },
+    })
+})
+
+-- Set configuration for specific filetype.
+cmp.setup.filetype('gitcommit', {
+    sources = cmp.config.sources({
+        { name = 'git' }, -- You can specify the `git` source if [you were installed it](https://github.com/petertriho/cmp-git).
+    }, {
+        { name = 'buffer' },
+    })
+})
+
+-- Use buffer source for `/` and `?` (if you enabled `native_menu`, this won't work anymore).
+cmp.setup.cmdline({ '/', '?' }, {
+    mapping = cmp.mapping.preset.cmdline(),
+    sources = {
+        { name = 'buffer' }
+    }
+})
+
+-- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
+cmp.setup.cmdline(':', {
+    mapping = cmp.mapping.preset.cmdline(),
+    sources = cmp.config.sources({
+        { name = 'path' }
+    }, {
+        { name = 'cmdline' }
+    })
 })
 
 lsp.on_attach(function(client, bufnr)
@@ -38,7 +84,7 @@ lsp.on_attach(function(client, bufnr)
     vim.keymap.set("n", "<leader>voc", function() vim.lsp.buf.outgoing_calls() end, opts)
     vim.keymap.set("n", "<leader>vic", function() vim.lsp.buf.incoming_calls() end, opts)
     vim.keymap.set("n", "<leader>vdi", function() vim.diagnostic.open_float() end, opts)
-    vim.keymap.set("n", "<leader>vbd", function() tbuiltin.diagnostics({bufnr=0}) end, opts)
+    vim.keymap.set("n", "<leader>vbd", function() tbuiltin.diagnostics({ bufnr = 0 }) end, opts)
     vim.keymap.set("n", "<leader>vad", function() tbuiltin.diagnostics() end, opts)
     vim.keymap.set("n", "<leader>vws", function() tbuiltin.lsp_workspace_symbols() end, opts)
     vim.keymap.set("n", "<leader>vca", function() vim.lsp.buf.code_action() end, opts)
@@ -48,18 +94,18 @@ lsp.on_attach(function(client, bufnr)
     vim.keymap.set("n", "<leader>rn", function() vim.lsp.buf.rename() end, opts)
 
     --vim.api.nvim_create_autocmd("CursorHold", {
-        --buffer = bufnr,
-        --callback = function()
-            --local opts = {
-                --focusable = false,
-                --close_events = { "BufLeave", "CursorMoved", "InsertEnter", "FocusLost" },
-                --border = 'rounded',
-                --source = 'always',
-                --prefix = ' ',
-                --scope = 'cursor',
-            --}
-            --vim.diagnostic.open_float(nil, opts)
-        --end
+    --buffer = bufnr,
+    --callback = function()
+    --local opts = {
+    --focusable = false,
+    --close_events = { "BufLeave", "CursorMoved", "InsertEnter", "FocusLost" },
+    --border = 'rounded',
+    --source = 'always',
+    --prefix = ' ',
+    --scope = 'cursor',
+    --}
+    --vim.diagnostic.open_float(nil, opts)
+    --end
     --})
 end)
 
@@ -74,8 +120,3 @@ lsp.set_sign_icons({
 })
 
 lsp.setup()
-
-local sigcfg = {
-    hint_enable = false,
-}
-require("lsp_signature").setup(sigcfg)

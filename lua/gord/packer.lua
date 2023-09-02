@@ -61,13 +61,18 @@ return require('packer').startup({
                 "SmiteshP/nvim-navic",
                 "nvim-tree/nvim-web-devicons", -- optional dependency
             },
-            after = "nvim-web-devicons", -- keep this if you're using NvChad
+            after = "nvim-web-devicons",       -- keep this if you're using NvChad
             config = function()
                 require("barbecue").setup()
             end,
         })
 
         use('nvim-treesitter/nvim-treesitter', { run = ':TSUpdate' })
+        use({
+            "nvim-treesitter/nvim-treesitter-textobjects",
+            after = "nvim-treesitter",
+            requires = "nvim-treesitter/nvim-treesitter",
+        })
         use('nvim-treesitter/playground')
         use('theprimeagen/harpoon')
         use('mbbill/undotree')
@@ -89,7 +94,35 @@ return require('packer').startup({
             }
         }
 
-        use('ray-x/lsp_signature.nvim')
+        use('echasnovski/mini.move')
+        use('kylechui/nvim-surround')
+        use('jiangmiao/auto-pairs')
+        use('tpope/vim-commentary')
+
+        use({
+            'ggandor/leap-spooky.nvim',
+            config = function()
+                require('leap-spooky').setup()
+            end
+        })
+        use({
+            'ggandor/leap.nvim',
+            config = function()
+                require('leap').add_default_mappings()
+            end
+        })
+
+        use('neovim/nvim-lspconfig')
+        use('hrsh7th/cmp-nvim-lsp')
+        use('hrsh7th/cmp-nvim-lsp-signature-help')
+        use('hrsh7th/cmp-buffer')
+        use('hrsh7th/cmp-path')
+        use('hrsh7th/cmp-cmdline')
+        use('hrsh7th/nvim-cmp')
+        use('hrsh7th/cmp-nvim-lua')
+        use('L3MON4D3/LuaSnip')
+        use('saadparwaiz1/cmp_luasnip')
+        use('petertriho/cmp-git')
 
         use('sustech-data/wildfire.nvim')
 
