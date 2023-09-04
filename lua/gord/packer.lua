@@ -99,18 +99,8 @@ return require('packer').startup({
         use('jiangmiao/auto-pairs')
         use('tpope/vim-commentary')
 
-        use({
-            'ggandor/leap-spooky.nvim',
-            config = function()
-                require('leap-spooky').setup()
-            end
-        })
-        use({
-            'ggandor/leap.nvim',
-            config = function()
-                require('leap').add_default_mappings()
-            end
-        })
+        use('ggandor/leap-spooky.nvim')
+        use('ggandor/leap.nvim')
 
         use('neovim/nvim-lspconfig')
         use('hrsh7th/cmp-nvim-lsp')
