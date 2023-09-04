@@ -96,7 +96,10 @@ return require('packer').startup({
 
         use('echasnovski/mini.move')
         use('kylechui/nvim-surround')
-        use('jiangmiao/auto-pairs')
+        use('windwp/nvim-autopairs')
+        use({
+            'windwp/nvim-ts-autotag',
+        })
         use('tpope/vim-commentary')
 
         use('ggandor/leap-spooky.nvim')
