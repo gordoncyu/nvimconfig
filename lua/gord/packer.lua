@@ -68,12 +68,13 @@ return require('packer').startup({
         })
 
         use('nvim-treesitter/nvim-treesitter', { run = ':TSUpdate' })
+        use('nvim-treesitter/playground')
         use({
             "nvim-treesitter/nvim-treesitter-textobjects",
             after = "nvim-treesitter",
             requires = "nvim-treesitter/nvim-treesitter",
         })
-        use('nvim-treesitter/playground')
+        use('nvim-treesitter/nvim-treesitter-context')
         use('theprimeagen/harpoon')
         use('mbbill/undotree')
         use('tpope/vim-fugitive')
