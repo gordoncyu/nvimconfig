@@ -95,8 +95,6 @@ return require('packer').startup({
             }
         }
 
-        use('ranjithshegde/ccls.nvim');
-
         use('echasnovski/mini.move')
         use('kylechui/nvim-surround')
         use('windwp/nvim-autopairs')
