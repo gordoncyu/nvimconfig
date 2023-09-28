@@ -1,3 +1,7 @@
+require('neodev').setup({
+    library = { plugins = { "nvim-dap-ui" }, types = true },
+})
+
 local lsp = require('lsp-zero').preset({})
 local tbuiltin = require('telescope.builtin')
 
@@ -5,7 +9,7 @@ lsp.preset("recommended")
 
 require("mason").setup()
 require("mason-lspconfig").setup {
-    ensure_installed = { 'tsserver', 'eslint', 'jsonls', 'jdtls', 'lua_ls', 'pyright', 'rust_analyzer' }
+    ensure_installed = { 'tsserver', 'eslint', 'jsonls', 'jdtls', 'lua_ls', 'pyright', 'rust_analyzer', 'clangd'}
 }
 
 local cmp = require('cmp')

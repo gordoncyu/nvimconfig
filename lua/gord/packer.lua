@@ -95,6 +95,17 @@ return require('packer').startup({
             }
         }
 
+        use({
+            "mfussenegger/nvim-dap",
+            dependencies = {
+                "theHamsta/nvim-dap-virtual-text",
+                "rcarriga/nvim-dap-ui",
+            },
+        })
+        use('mfussenegger/nvim-dap-ui')
+        use('theHamsta/nvim-dap-virtual-text')
+        use('jay-babu/mason-nvim-dap.nvim')
+
         use('echasnovski/mini.move')
         use('kylechui/nvim-surround')
         use('windwp/nvim-autopairs')
@@ -106,6 +117,7 @@ return require('packer').startup({
         use('ggandor/leap-spooky.nvim')
         use('ggandor/leap.nvim')
 
+        use('folke/neodev.nvim')
         use('neovim/nvim-lspconfig')
         use('hrsh7th/cmp-nvim-lsp')
         use('hrsh7th/cmp-nvim-lsp-signature-help')
