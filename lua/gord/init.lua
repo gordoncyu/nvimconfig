@@ -1,5 +1,6 @@
 require("gord.packer")
 require("gord.remap")
+require("gord.commands")
 require("gord.set")
 require("gord.jukit")
 vim.api.nvim_command('set mouse =')
