@@ -113,6 +113,7 @@ return require('packer').startup({
             'windwp/nvim-ts-autotag',
         })
         use('tpope/vim-commentary')
+        use('tpope/vim-unimpaired')
 
         use('ggandor/leap-spooky.nvim')
         use('ggandor/leap.nvim')
