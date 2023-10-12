@@ -101,6 +101,8 @@ return require('packer').startup({
             }
         }
 
+        use 'mfussenegger/nvim-jdtls'
+
         use({
             "mfussenegger/nvim-dap",
             dependencies = {
