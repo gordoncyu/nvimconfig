@@ -1,6 +1,7 @@
 --vim.keymap.set('n', '<cr>', "<nop>")
 --vim.keymap.set('n', '<cr>', '<cmd>echo "New command"<CR>')
 vim.keymap.set('n', '<leader>jos', '<cmd>call jukit#splits#output()<CR>')
+vim.keymap.set('n', '<leader>jts', '<cmd>call jukit#splits#term()<CR>')
 vim.keymap.set('n', '<leader>jso', '<cmd>call jukit#splits#show_last_cell_output(1)<CR>')
 vim.keymap.set('n', '<leader>j<CR>', '<cmd>call jukit#send#section(0)<CR>')
 vim.keymap.set('v', '<leader>j<CR>', '<cmd>call jukit#send#selection(0)<CR>')
