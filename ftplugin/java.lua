@@ -13,13 +13,13 @@ local bundles = vim.split(vim.fn.glob(mason_lsp_install_location .. "/packages/j
 vim.list_extend(bundles, vim.split(vim.fn.glob(mason_lsp_install_location .. "/packages/java-test/extension/server/*.jar", 1), '\n'))
 
 local config = {
+    root_dir = root_dir,
     cmd = {
         mason_lsp_install_location .. "/bin/jdtls", -- This should be the full path to your jdtls binary
         '-data', root_dir,
     },
     init_options = {
         bundles = bundles,
-        root_dir = root_dir,
     },
 }
 
