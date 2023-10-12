@@ -67,6 +67,13 @@ return require('packer').startup({
             end,
         })
 
+        use {
+            'rcarriga/nvim-notify',
+            config = function()
+                vim.notify = require('notify')
+            end,
+        }
+
         use('nvim-treesitter/nvim-treesitter', { run = ':TSUpdate' })
         use('nvim-treesitter/playground')
         use({
