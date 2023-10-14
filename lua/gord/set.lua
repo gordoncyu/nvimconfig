@@ -29,3 +29,6 @@ vim.opt.updatetime = 50
 vim.opt.colorcolumn = "80"
 
 vim.g.mapleader = " "
+
+-- Line numbers etc in Netrw
+vim.cmd([[let g:netrw_bufsettings = 'noma nomod nu nobl nowrap ro']])
