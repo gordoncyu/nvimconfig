@@ -16,7 +16,6 @@ local config = {
     root_dir = root_dir,
     cmd = {
         mason_lsp_install_location .. "/bin/jdtls", -- This should be the full path to your jdtls binary
-        '-data', root_dir,
     },
     init_options = {
         bundles = bundles,
