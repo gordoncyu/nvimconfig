@@ -28,9 +28,7 @@ vim.keymap.set("n", "<leader>=", function()
     -- stupid clangd lsp format doesn't respect my 4 space indents; double those auto 2 space ones ez
     if vim.bo.filetype == 'c' then
         vim.cmd([[
-            let save_cursor = getpos(".")
             %s/^\(\s\+\)/\1\1/
-            call setpos('.', save_cursor)
         ]])
         vim.cmd("noh")
     end
