@@ -29,12 +29,10 @@ vim.keymap.set("n", "<leader>=", function()
     if vim.bo.filetype == 'c' then
         vim.cmd([[
             let save_cursor = getpos(".")
-            let in_comment = 0
-            g/^/ if in_comment == 0 && getline(".") =~ '^\s*/\*' | let in_comment = 1 | endif
-                 \ if in_comment == 1 && getline(".") =~ '^\s*\*/' | let in_comment = 0 | else | s/^\(\s\+\)/\1\1/ | endif
+            %s/^\(\s\+\)/\1\1/
             call setpos('.', save_cursor)
-            noh
         ]])
+        vim.cmd("noh")
     end
 end)
 
