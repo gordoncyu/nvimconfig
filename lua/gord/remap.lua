@@ -30,6 +30,7 @@ vim.keymap.set("n", "<leader>=", function()
         vim.cmd([[
             %s/^\(\s\+\)/\1\1/
         ]])
+        vim.cmd("noh")
     end
 end)
 
