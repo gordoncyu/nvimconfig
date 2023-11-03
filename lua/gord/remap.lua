@@ -25,12 +25,6 @@ vim.keymap.set("n", "Q", "<nop>")
 vim.keymap.set("n", "<C-f>", "<cmd>silent ! tmux neww ~/.local/scripts/tms<CR>")
 vim.keymap.set("n", "<leader>=", function()
     vim.lsp.buf.format()
-    -- stupid clangd lsp format doesn't respect my 4 space indents; double those auto 2 space ones ez
-    if vim.bo.filetype == 'c' then
-        vim.cmd([[
-            %s/^\(\s\+\)/\1\1/
-        ]])
-    end
 end)
 
 -- quickfixlist stuff
