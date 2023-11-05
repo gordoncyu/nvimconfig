@@ -1,5 +1,7 @@
 local autopairs = require('nvim-autopairs')
-autopairs.setup()
+autopairs.setup({
+    fast_wrap = {},
+})
 local cmp_autopairs = require('nvim-autopairs.completion.cmp')
 local cmp = require('cmp')
 cmp.event:on(

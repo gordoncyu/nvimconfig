@@ -11,7 +11,6 @@ packer.util = require('packer.util')
 -- Only required if you have packer configured as `opt`
 vim.cmd [[packadd packer.nvim]]
 
-local packer = require('packer')
 local ok, packer_overrides = pcall(require, 'packer_overrides') -- Attempt to load the file
 
 -- If the file couldn't be loaded, use default values
@@ -25,7 +24,7 @@ if not ok then
     }
 end
 
-return require('packer').startup({
+return packer.startup({
     function(use)
         -- Packer can manage itself
         use 'wbthomason/packer.nvim'
