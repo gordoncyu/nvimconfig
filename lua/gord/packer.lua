@@ -148,6 +148,8 @@ return packer.startup({
         use('luk400/vim-jukit')
 
         use('christoomey/vim-tmux-navigator')
+
+        use('907th/vim-auto-save')
     end,
     config = {
         git = {
