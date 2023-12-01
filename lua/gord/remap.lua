@@ -22,7 +22,6 @@ vim.keymap.set("v", "<leader>p", "\"+p")
 
 -- Q is evil
 vim.keymap.set("n", "Q", "<nop>")
-vim.keymap.set("n", "<C-f>", "<cmd>silent ! tmux neww ~/.local/scripts/tms<CR>")
 vim.keymap.set("n", "<leader>=", function()
     vim.lsp.buf.format()
 end)
