@@ -103,6 +103,7 @@ return packer.startup({
         }
 
         use 'mfussenegger/nvim-jdtls'
+        use 'hdiniz/vim-gradle'
 
         use({
             "mfussenegger/nvim-dap",
