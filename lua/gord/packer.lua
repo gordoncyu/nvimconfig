@@ -146,6 +146,8 @@ return packer.startup({
         use('ThePrimeagen/vim-be-good')
 
         use('luk400/vim-jukit')
+
+        use('christoomey/vim-tmux-navigator')
     end,
     config = {
         git = {
