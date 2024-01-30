@@ -1,5 +1,6 @@
 vim.o.mouse = ""
 vim.o.foldmethod = "marker"
+vim.o.foldmarker = "<fold<<,>fold>>"
 
 vim.opt.nu = true
 vim.opt.relativenumber = true
