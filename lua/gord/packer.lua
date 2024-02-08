@@ -45,10 +45,7 @@ return packer.startup({
             end
         })
 
-        use('cameron-wags/rainbow_csv.nvim')
-
-        use({
-            'lewis6991/gitsigns.nvim',
+        use({'cameron-wags/rainbow_csv.nvim',
             config = function()
                 require('rainbow_csv').setup()
             end,
@@ -62,6 +59,8 @@ return packer.startup({
                 'rfc_semicolon'
             }
         })
+
+        use('lewis6991/gitsigns.nvim')
 
         use({
             'feline-nvim/feline.nvim',
