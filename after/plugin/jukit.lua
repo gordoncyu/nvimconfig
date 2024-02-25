@@ -2,9 +2,13 @@
 --vim.keymap.set('n', '<cr>', '<cmd>echo "New command"<CR>')
 vim.keymap.set('n', '<leader>jos', '<cmd>call jukit#splits#output()<CR>')
 vim.keymap.set('n', '<leader>jts', '<cmd>call jukit#splits#term()<CR>')
-vim.keymap.set('n', '<leader>jso', '<cmd>call jukit#splits#show_last_cell_output(1)<CR>')
-vim.keymap.set('n', '<leader>j<CR>', '<cmd>call jukit#send#line(0)<CR>')
-vim.keymap.set('v', '<leader>j<CR>', '<cmd>call jukit#send#selection(0)<CR>')
+-- vim.keymap.set('n', '<leader>jso', '<cmd>call jukit#splits#show_last_cell_output(1)<CR>')
+vim.keymap.set('n', '<leader>js', '<cmd>call jukit#send#line()<CR>')
+-- vim.keymap.set('v', '<leader>js', '<cmd>call jukit#send#selection()<CR>')
+-- For the love of God I cannot get this to work through lua bindings. Time for vimscript directly from the docs
+vim.cmd([[
+vnoremap <leader>js :<C-U>call jukit#send#selection()<cr>
+]])
 vim.keymap.set('n', '<leader>j<space>', '<cmd>call jukit#send#section(0)<CR>')
 vim.keymap.set('n', '<leader>jeuc', '<cmd>call jukit#send#until_current_section()<cr>')
 vim.keymap.set('n', '<leader>jea', '<cmd>call jukit#send#all()<cr>')
