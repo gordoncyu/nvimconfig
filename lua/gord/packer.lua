@@ -140,6 +140,7 @@ return packer.startup({
         })
         use('tpope/vim-commentary')
         use('tpope/vim-unimpaired')
+        use('tpope/vim-eunuch')
 
         use('ggandor/leap-spooky.nvim')
         use('ggandor/leap.nvim')
