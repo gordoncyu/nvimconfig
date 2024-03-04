@@ -37,13 +37,14 @@ return packer.startup({
 
         use 'nvim-telescope/telescope-ui-select.nvim'
 
-        use({
-            'rose-pine/neovim',
-            as = 'rose-pine',
-            config = function()
-                vim.cmd('colorscheme rose-pine')
-            end
-        })
+        -- use({
+        --     'rose-pine/neovim',
+        --     as = 'rose-pine',
+        --     config = function()
+        --         vim.cmd('colorscheme rose-pine')
+        --     end
+        -- })
+        use({ 'kepano/flexoki-neovim', as = 'flexoki', })
 
         use({'cameron-wags/rainbow_csv.nvim',
             config = function()
