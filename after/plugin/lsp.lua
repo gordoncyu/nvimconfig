@@ -72,7 +72,7 @@ cmp.setup({
         { name = 'luasnip' }, -- For luasnip users.
         { name = 'path' }
     }, {
-        { name = 'buffer', keyword_length = 5 },
+        { name = 'buffer' },
     })
 })
 
