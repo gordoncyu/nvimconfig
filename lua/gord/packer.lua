@@ -146,6 +146,8 @@ return packer.startup({
         use('ggandor/leap-spooky.nvim')
         use('ggandor/leap.nvim')
 
+        use('unblevable/quick-scope')
+
         use('folke/neodev.nvim')
         use('neovim/nvim-lspconfig')
         use('hrsh7th/cmp-nvim-lsp')
