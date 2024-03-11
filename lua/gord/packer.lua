@@ -63,6 +63,8 @@ return packer.startup({
 
         use('lewis6991/gitsigns.nvim')
 
+        use('bloznelis/before.nvim')
+
         use({
             'feline-nvim/feline.nvim',
             requires = {
