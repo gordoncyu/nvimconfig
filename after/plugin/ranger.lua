@@ -1,4 +1,4 @@
-require("ranger-nvim").setup({ 
+require("ranger-nvim").setup({
     replace_netrw = false,
     enable_cmds = true,
     ui = {
@@ -10,6 +10,13 @@ require("ranger-nvim").setup({
 vim.api.nvim_set_keymap("n", "<leader>pv", "", {
     noremap = true,
     callback = function()
-        require("ranger-nvim").open(true)
+        local handle = io.popen("which ranger")
+        local result = handle:read("*a")
+        handle:close()
+        if result:match("ranger") then
+            require("ranger-nvim").open(true)
+        else
+            vim.cmd('Ex')
+        end
     end,
 })
