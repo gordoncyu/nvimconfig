@@ -37,4 +37,8 @@ vim.g.mapleader = " "
 vim.opt.scrollback = 50000
 
 -- Line numbers etc in Netrw
-vim.cmd([[let g:netrw_bufsettings = 'noma nomod nu nobl nowrap ro']])
+vim.g.netrw_bufsettings = "noma nomod nu nobl nowrap ro"
+
+vim.cmd([[
+hi Pmenu blend=0
+]])
