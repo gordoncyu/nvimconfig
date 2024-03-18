@@ -39,6 +39,8 @@ vim.opt.scrollback = 50000
 -- Line numbers etc in Netrw
 vim.g.netrw_bufsettings = "noma nomod nu nobl nowrap ro"
 
-vim.cmd([[
-hi Pmenu blend=0
-]])
+vim.defer_fn(function()
+    vim.cmd([[
+    hi Pmenu blend=0
+    ]])
+end, 100)
