@@ -99,16 +99,38 @@ require'nvim-treesitter.configs'.setup {
           lookahead = true,
 
           keymaps = {
-              -- You can use the capture groups defined in textobjects.scm
               ["af"] = "@function.outer",
               ["if"] = "@function.inner",
-              ["ac"] = "@class.outer",
-              -- You can optionally set descriptions to the mappings (used in the desc parameter of
-              -- nvim_buf_set_keymap) which plugins like which-key display
-              ["ic"] = { query = "@class.inner", desc = "Select inner part of a class region" },
-              -- You can also use captures from other query groups like `locals.scm`
-              ["as"] = { query = "@scope", query_group = "locals", desc = "Select language scope" },
+              ["ak"] = "@class.outer",
+              ["ik"] = "@class.inner",
+              ["ac"] = "@call.outer",
+              ["ic"] = "@call.inner",
+              ["a#"] = "@comment.outer",
+              ["i#"] = "@comment.inner",
+              ["a?"] = "@conditional.outer",
+              ["i?"] = "@conditional.inner",
+              ["a="] = "@assignment.outer",
+              ["=r"] = "@assignment.rhs",
+              ["=l"] = "@assignment.lhs",
+              ["i="] = "@assignment.inner",
+              ["aa"] = "@parameter.outer",
+              ["ia"] = "@parameter.inner",
+              ["ah"] = "@attribute.outer", -- really only in html (and astro lmao)
+              ["ih"] = "@attribute.inner", -- can't think of any other single char that isn't already taken
+              ["ab"] = "@block.outer",
+              ["ib"] = "@block.inner",
+              ["al"] = "@loop.outer",
+              ["il"] = "@loop.inner",
+              ["in"] = "@number.inner",
+              ["an"] = "@number.inner",
+              ["ar"] = "@return.outer",
+              ["ir"] = "@return.inner",
+              ["a/"] = "@regex.outer",
+              ["i/"] = "@regex.inner",
+              ["as"] = "@statement.outer",
+              ["is"] = "@statement.outer",
           },
+
           -- You can choose the select mode (default is charwise 'v')
           --
           -- Can also be a function which gets passed a table with the keys
