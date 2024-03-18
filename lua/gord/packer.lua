@@ -150,6 +150,9 @@ return packer.startup({
         use('ggandor/leap.nvim')
 
         use('unblevable/quick-scope')
+        use({
+            'lukas-reineke/indent-blankline.nvim',
+        })
 
         use('folke/neodev.nvim')
         use('neovim/nvim-lspconfig')
