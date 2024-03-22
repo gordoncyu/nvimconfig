@@ -21,6 +21,9 @@ vim.keymap.set("n", "<leader>Y", "\"+Y")
 vim.keymap.set("n", "<leader>p", "\"+p")
 vim.keymap.set("v", "<leader>p", "\"+p")
 
+-- visually select over pasted text
+vim.keymap.set("n", "gp", "`[v`]")
+
 -- Q is evil
 vim.keymap.set("n", "Q", "<nop>")
 vim.keymap.set("n", "<leader>=", function()
