@@ -1,4 +1,4 @@
-vim.o.mouse = ""
+-- vim.o.mouse = ""
 vim.o.foldmethod = "marker"
 vim.o.foldmarker = "<fold<<,>fold>>"
 
