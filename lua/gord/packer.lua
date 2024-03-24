@@ -138,7 +138,6 @@ return packer.startup({
 
         use('echasnovski/mini.move')
         use('kylechui/nvim-surround')
-        use('windwp/nvim-autopairs')
         use({
             'windwp/nvim-ts-autotag',
         })
