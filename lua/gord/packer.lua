@@ -175,6 +175,15 @@ return packer.startup({
         use('christoomey/vim-tmux-navigator')
 
         use('907th/vim-auto-save')
+
+        use({
+                'barrett-ruth/live-server.nvim',
+                build = 'npm add -g live-server',
+                cmd = { 'LiveServerStart', 'LiveServerStop' },
+                config = function ()
+                    require('live-server').setup()
+                end
+        })
     end,
     config = {
         git = {
