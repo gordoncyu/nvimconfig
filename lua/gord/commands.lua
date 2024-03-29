@@ -5,11 +5,15 @@ end,
 {nargs=0})
 
 vim.cmd([[
-" Define a new command 'BDKeepPane' that deletes the current buffer
-" without closing the window or pane.
 " in vimscript because doing it in lua screwed over vim-tmux-navigator
 " dang vimscript syntax highlighting within lua files
-function! DeleteBufferKeepPane()
+" Define a function to delete the current buffer while keeping the pane, with an option to force deletion.
+function! DeleteBufferKeepPane(force) range
+    if &modified && a:force == 0
+        echoerr "Buffer is modified. Use BD! to force deletion."
+        return
+    endif
+
     " Store the current buffer number.
     let l:current_buffer = bufnr('%')
 
@@ -25,11 +29,16 @@ function! DeleteBufferKeepPane()
     " If an alternative buffer was found, switch to it and delete the original.
     if l:buffer_to_switch != -1
         execute 'buffer' l:buffer_to_switch
-        execute 'bdelete' l:current_buffer
+        if a:force
+            execute 'bdelete!' l:current_buffer
+        else
+            execute 'bdelete' l:current_buffer
+        endif
     else
         echo "No other buffer found to switch to; buffer not deleted."
     endif
 endfunction
 
-command! BD call DeleteBufferKeepPane()
+" Define a command that checks for a bang. It will pass 1 to the function if the bang is present.
+command! -bang BD call DeleteBufferKeepPane(<bang>0 == '' ? 0 : 1)
 ]])
