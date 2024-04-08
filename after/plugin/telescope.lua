@@ -18,6 +18,9 @@ telescope.setup({
             n = {
                 ["dd"] = tactions.delete_buffer
             }
+        },
+        file_ignore_patterns = {
+            "node_modules"
         }
     },
     extensions = {
