@@ -20,6 +20,8 @@ vim.keymap.set("n", "<leader>Y", "\"+Y")
 -- paste from
 vim.keymap.set("n", "<leader>p", "\"+p")
 vim.keymap.set("v", "<leader>p", "\"+p")
+vim.keymap.set("n", "<leader>P", "\"+P")
+vim.keymap.set("v", "<leader>P", "\"+P")
 
 -- visually select over pasted text
 vim.keymap.set("n", "gp", "`[v`]")
