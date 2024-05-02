@@ -24,17 +24,17 @@ if not ok then
     }
 end
 
-return packer.startup({
+return packer.startup {
     function(use)
         -- Packer can manage itself
         use 'wbthomason/packer.nvim'
 
-        use({
+        use {
             'blumaa/ohne-accidents',
             config = function()
                 require("ohne-accidents").setup()
             end
-          })
+        }
 
         use {
             'nvim-telescope/telescope.nvim', tag = '0.1.2',
@@ -45,9 +45,10 @@ return packer.startup({
         use 'nvim-telescope/telescope-ui-select.nvim'
         use 'kelly-lin/ranger.nvim'
 
-        use({ 'kepano/flexoki-neovim', as = 'flexoki', })
+        use { 'kepano/flexoki-neovim', as = 'flexoki', }
 
-        use({'cameron-wags/rainbow_csv.nvim',
+        use {
+            'cameron-wags/rainbow_csv.nvim',
             config = function()
                 require('rainbow_csv').setup()
             end,
@@ -60,13 +61,13 @@ return packer.startup({
                 'rfc_csv',
                 'rfc_semicolon'
             }
-        })
+        }
 
-        use('lewis6991/gitsigns.nvim')
+        use 'lewis6991/gitsigns.nvim'
 
-        use('bloznelis/before.nvim')
+        use 'bloznelis/before.nvim'
 
-        use({
+        use {
             'feline-nvim/feline.nvim',
             requires = {
                 'lewis6991/gitsigns.nvim'
@@ -74,8 +75,9 @@ return packer.startup({
             config = function()
                 require('feline').setup()
             end
-        })
-        use({
+        }
+
+        use {
             "utilyre/barbecue.nvim",
             tag = "*",
             requires = {
@@ -83,10 +85,10 @@ return packer.startup({
                 "nvim-tree/nvim-web-devicons", -- optional dependency
             },
             after = "nvim-web-devicons",       -- keep this if you're using NvChad
-            config = function()
-                require("barbecue").setup()
-            end,
-        })
+                config = function()
+                    require("barbecue").setup()
+                end,
+        }
 
         use {
             'rcarriga/nvim-notify',
@@ -95,17 +97,21 @@ return packer.startup({
             end,
         }
 
-        use('nvim-treesitter/nvim-treesitter', { run = ':TSUpdate' })
-        use('nvim-treesitter/playground')
-        use({
+        use {
+            'nvim-treesitter/nvim-treesitter',
+            run = ':TSUpdate'
+        }
+
+        use 'nvim-treesitter/playground'
+        use {
             "nvim-treesitter/nvim-treesitter-textobjects",
             after = "nvim-treesitter",
             requires = "nvim-treesitter/nvim-treesitter",
-        })
-        -- use('nvim-treesitter/nvim-treesitter-context')
-        use('theprimeagen/harpoon')
-        use('mbbill/undotree')
-        use('tpope/vim-fugitive')
+        }
+        -- use 'nvim-treesitter/nvim-treesitter-context'
+        use 'theprimeagen/harpoon'
+        use 'mbbill/undotree'
+        use 'tpope/vim-fugitive'
 
         use {
             'VonHeikemen/lsp-zero.nvim',
@@ -125,79 +131,75 @@ return packer.startup({
         use 'mfussenegger/nvim-jdtls'
         use 'hdiniz/vim-gradle'
 
-        use({
+        use {
             "mfussenegger/nvim-dap",
             dependencies = {
                 "theHamsta/nvim-dap-virtual-text",
                 "rcarriga/nvim-dap-ui",
             },
-        })
-        use('mfussenegger/nvim-dap-ui')
-        use('theHamsta/nvim-dap-virtual-text')
-        use('jay-babu/mason-nvim-dap.nvim')
+        }
+        use 'mfussenegger/nvim-dap-ui'
+        use 'theHamsta/nvim-dap-virtual-text'
+        use 'jay-babu/mason-nvim-dap.nvim'
 
-        use('echasnovski/mini.move')
-        use('kylechui/nvim-surround')
-        use('windwp/nvim-autopairs')
-        use({
-            'windwp/nvim-ts-autotag',
-        })
-        use('tpope/vim-commentary')
-        use('tpope/vim-unimpaired')
-        use('tpope/vim-eunuch')
+        use 'echasnovski/mini.move'
+        use 'kylechui/nvim-surround'
+        use 'windwp/nvim-autopairs'
+        use 'windwp/nvim-ts-autotag'
+        use 'tpope/vim-commentary'
+        use 'tpope/vim-unimpaired'
+        use 'tpope/vim-eunuch'
 
-        use('ggandor/leap-spooky.nvim')
-        use('ggandor/leap.nvim')
+        use 'ggandor/leap-spooky.nvim'
+        use 'ggandor/leap.nvim'
 
-        use('unblevable/quick-scope')
-        use({
-            'lukas-reineke/indent-blankline.nvim',
-        })
+        use 'unblevable/quick-scope'
+        use 'lukas-reineke/indent-blankline.nvim'
 
-        use('folke/neodev.nvim')
-        use('neovim/nvim-lspconfig')
-        use('hrsh7th/cmp-nvim-lsp')
-        use('hrsh7th/cmp-nvim-lsp-signature-help')
-        use('hrsh7th/cmp-buffer')
-        use('hrsh7th/cmp-path')
-        use('hrsh7th/cmp-cmdline')
-        use('hrsh7th/nvim-cmp')
-        use('hrsh7th/cmp-nvim-lua')
-        use('L3MON4D3/LuaSnip')
-        use('saadparwaiz1/cmp_luasnip')
-        use('petertriho/cmp-git')
+        use 'folke/neodev.nvim'
+        use 'neovim/nvim-lspconfig'
+        use 'hrsh7th/cmp-nvim-lsp'
+        use 'hrsh7th/cmp-nvim-lsp-signature-help'
+        use 'hrsh7th/cmp-buffer'
+        use 'hrsh7th/cmp-path'
+        use 'hrsh7th/cmp-cmdline'
+        use 'hrsh7th/nvim-cmp'
+        use 'hrsh7th/cmp-nvim-lua'
+        use 'L3MON4D3/LuaSnip'
+        use 'saadparwaiz1/cmp_luasnip'
+        use 'petertriho/cmp-git'
 
-        use('sustech-data/wildfire.nvim')
+        use 'sustech-data/wildfire.nvim'
 
-        use('ThePrimeagen/vim-be-good')
+        use 'ThePrimeagen/vim-be-good'
 
-        use('luk400/vim-jukit')
+        use 'luk400/vim-jukit'
 
-        use('christoomey/vim-tmux-navigator')
+        use 'christoomey/vim-tmux-navigator'
 
-        use('907th/vim-auto-save')
+        use '907th/vim-auto-save'
 
-        use({
+        use {
             'barrett-ruth/live-server.nvim',
             build = 'npm add -g live-server',
             cmd = { 'LiveServerStart', 'LiveServerStop' },
             config = function ()
                 require('live-server').setup()
             end
-        })
+        }
 
-        use({
+        use {
             "iamcco/markdown-preview.nvim",
             run = "cd app && npm install",
             setup = function()
                 vim.g.mkdp_filetypes = { "markdown" }
             end,
             ft = { "markdown" },
-        })
+        }
     end,
     config = {
         git = {
             subcommands = packer_overrides.git_subcommands
         },
     }
-})
+}
