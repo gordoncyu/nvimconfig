@@ -32,7 +32,7 @@ return packer.startup({
         use({
             'blumaa/ohne-accidents',
             config = function()
-              require("ohne-accidents").setup()
+                require("ohne-accidents").setup()
             end
           })
 
@@ -178,12 +178,12 @@ return packer.startup({
         use('907th/vim-auto-save')
 
         use({
-                'barrett-ruth/live-server.nvim',
-                build = 'npm add -g live-server',
-                cmd = { 'LiveServerStart', 'LiveServerStop' },
-                config = function ()
-                    require('live-server').setup()
-                end
+            'barrett-ruth/live-server.nvim',
+            build = 'npm add -g live-server',
+            cmd = { 'LiveServerStart', 'LiveServerStop' },
+            config = function ()
+                require('live-server').setup()
+            end
         })
 
         use({
