@@ -25,6 +25,21 @@ vim.keymap.set("v", "<leader>P", "\"+P")
 -- visually select over pasted text
 vim.keymap.set("n", "gp", "`[v`]")
 
+-- gV
+vim.keymap.set("n", "gV", "gvV")
+
+-- v/V/<C-v> does not toggle, only enables
+for i, key in pairs({"v", "V", ""}) do
+    vim.keymap.set("x", key, function ()
+        local mode = vim.api.nvim_get_mode().mode
+        if mode == key then
+            return
+        end
+        vim.api.nvim_feedkeys(key, "n", true)
+        print(key)
+    end)
+end
+
 -- Q is evil
 vim.keymap.set("n", "Q", "<nop>")
 vim.keymap.set("n", "<leader>=", function()
