@@ -1,6 +1,5 @@
 vim.g.mapleader = " "
--- ranger.nvim
--- vim.keymap.set("n", "<leader>pv", vim.cmd.Ex)
+vim.keymap.set("n", "<leader>pv", vim.cmd.Ex)
 
 -- nav keeping cursor centered
 vim.keymap.set("n", "J", "mzJ`z")
