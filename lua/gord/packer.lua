@@ -36,6 +36,15 @@ return packer.startup {
             end
         }
 
+        use {
+            "folke/which-key.nvim",
+            config = function()
+            vim.o.timeout = true
+            vim.o.timeoutlen = 300
+            require("which-key").setup()
+            end
+        }
+
         use 'JellyApple102/flote.nvim'
 
         use {
