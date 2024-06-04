@@ -101,8 +101,8 @@ require'nvim-treesitter.configs'.setup {
           keymaps = {
               ["af"] = "@function.outer",
               ["if"] = "@function.inner",
-              ["ak"] = "@class.outer",
-              ["ik"] = "@class.inner",
+              ["aC"] = "@class.outer",
+              ["iC"] = "@class.inner",
               ["ac"] = "@call.outer",
               ["ic"] = "@call.inner",
               ["a#"] = "@comment.outer",
@@ -117,8 +117,8 @@ require'nvim-treesitter.configs'.setup {
               ["ia"] = "@parameter.inner",
               ["ah"] = "@attribute.outer", -- really only in html (and astro lmao)
               ["ih"] = "@attribute.inner", -- can't think of any other single char that isn't already taken
-              ["ab"] = "@block.outer",
-              ["ib"] = "@block.inner",
+              ["aB"] = "@block.outer",
+              ["iB"] = "@block.inner",
               ["al"] = "@loop.outer",
               ["il"] = "@loop.inner",
               ["in"] = "@number.inner",
@@ -127,8 +127,8 @@ require'nvim-treesitter.configs'.setup {
               ["ir"] = "@return.inner",
               ["a/"] = "@regex.outer",
               ["i/"] = "@regex.inner",
-              ["as"] = "@statement.outer",
-              ["is"] = "@statement.outer",
+              ["aS"] = "@statement.outer",
+              ["iS"] = "@statement.outer",
           },
 
           -- You can choose the select mode (default is charwise 'v')

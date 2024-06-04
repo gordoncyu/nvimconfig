@@ -110,10 +110,13 @@ return packer.startup {
             after = "nvim-treesitter",
             requires = "nvim-treesitter/nvim-treesitter",
         }
+        use "chrisgrieser/nvim-various-textobjs"
         -- use 'nvim-treesitter/nvim-treesitter-context'
         use 'theprimeagen/harpoon'
         use 'mbbill/undotree'
         use 'tpope/vim-fugitive'
+
+        use 'sheerun/vim-polyglot'
 
         use {
             'VonHeikemen/lsp-zero.nvim',
