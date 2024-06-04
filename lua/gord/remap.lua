@@ -1,6 +1,10 @@
 vim.g.mapleader = " "
 vim.keymap.set("n", "<leader>pv", vim.cmd.Ex)
 
+-- set things
+vim.keymap.set("n", "<leader>nh", "<cmd>noh<CR>")
+vim.keymap.set("n", "<leader>sw", "<cmd>set wrap!<CR>")
+
 -- nav keeping cursor centered
 vim.keymap.set("n", "J", "mzJ`z")
 vim.keymap.set("n", "<C-d>", "<C-d>zz")
