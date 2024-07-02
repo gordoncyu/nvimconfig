@@ -13,7 +13,7 @@ vim.keymap.set({ "o", "x" }, "ai", "<cmd>lua require('various-textobjs').indenta
 vim.keymap.set({ "o", "x" }, "iI", "<cmd>lua require('various-textobjs').indentation('inner', 'inner')<CR>", {desc="indentation"})
 vim.keymap.set({ "o", "x" }, "aI", "<cmd>lua require('various-textobjs').indentation('outer', 'outer')<CR>", {desc="indentation and lines above/below"})
 
-vim.keymap.set({ "o", "x" }, "Ri", "<cmd>lua require('various-textobjs').restOfIndentation()<CR>", {desc="rest of indentation"})
+vim.keymap.set({ "o", "x" }, "ri", "<cmd>lua require('various-textobjs').restOfIndentation()<CR>", {desc="rest of indentation"})
 
 vim.keymap.set({ "o", "x" }, "ig", "<cmd>lua require('various-textobjs').greedyOuterIndentation('inner')<CR>", {desc="greedy outer indentation"})
 vim.keymap.set({ "o", "x" }, "ag", "<cmd>lua require('various-textobjs').greedyOuterIndentation('outer')<CR>", {desc="greedy outer indentation, includes a blank like"})
@@ -21,7 +21,7 @@ vim.keymap.set({ "o", "x" }, "ag", "<cmd>lua require('various-textobjs').greedyO
 vim.keymap.set({ "o", "x" }, "is", "<cmd>lua require('various-textobjs').subword('inner')<CR>", {desc="subword"})
 vim.keymap.set({ "o", "x" }, "as", "<cmd>lua require('various-textobjs').subword('outer')<CR>", {desc="subword including trailing '_- '"})
 
-vim.keymap.set({ "o", "x" }, "c", "<cmd>lua require('various-textobjs').toNextClosingBracket()<CR>", {desc="to next bracket"})
+vim.keymap.set({ "o", "x" }, "rc", "<cmd>lua require('various-textobjs').toNextClosingBracket()<CR>", {desc="to next bracket"})
 
 vim.keymap.set({ "o", "x" }, "q", "<cmd>lua require('various-textobjs').toNextQuotationMark()<CR>", {desc="to next quote"})
 
@@ -31,7 +31,7 @@ vim.keymap.set({ "o", "x" }, "aq", "<cmd>lua require('various-textobjs').anyQuot
 vim.keymap.set({ "o", "x" }, "ib", "<cmd>lua require('various-textobjs').anyBracket('inner')<CR>", {desc="any bracket inner"})
 vim.keymap.set({ "o", "x" }, "ab", "<cmd>lua require('various-textobjs').anyBracket('outer')<CR>", {desc="any bracket outer"})
 
-vim.keymap.set({ "o", "x" }, "Rp", "<cmd>lua require('various-textobjs').restOfParagraph()<CR>", {desc="rest of paragraph"})
+vim.keymap.set({ "o", "x" }, "rp", "<cmd>lua require('various-textobjs').restOfParagraph()<CR>", {desc="rest of paragraph"})
 
 vim.keymap.set({ "o", "x" }, "gG", "<cmd>lua require('various-textobjs').entireBuffer()<CR>", {desc="everything lol"})
 
