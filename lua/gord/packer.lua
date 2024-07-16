@@ -45,6 +45,20 @@ return packer.startup {
             end
         }
 
+        use {
+            "folke/zen-mode.nvim",
+            config = function()
+                require("zen-mode").setup({
+                    plugins = {
+                        options = {
+                            laststatus = 3, -- keep status line
+                        }
+                    }
+                })
+                vim.keymap.set({'n', 'v', 's'}, "<leader>z", '<cmd>ZenMode<CR>')
+            end,
+        }
+
         use 'JellyApple102/flote.nvim'
 
         use {
