@@ -181,7 +181,12 @@ return packer.startup {
         use 'windwp/nvim-autopairs'
         use 'windwp/nvim-ts-autotag'
         use 'tpope/vim-commentary'
-        use 'tpope/vim-unimpaired'
+        use {
+            'tummetott/unimpaired.nvim',
+            config = function ()
+                require('unimpaired').setup()
+            end
+        }
         use 'tpope/vim-eunuch'
 
         use 'ggandor/leap.nvim'
