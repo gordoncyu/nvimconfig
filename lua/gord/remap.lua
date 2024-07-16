@@ -5,6 +5,8 @@ vim.keymap.set("n", "<leader>pv", vim.cmd.Ex)
 vim.keymap.set("n", "<leader>nh", "<cmd>noh<CR>")
 vim.keymap.set("n", "<leader>sw", "<cmd>set wrap!<CR>")
 vim.keymap.set("n", "<leader>sn", "<cmd>set number!<CR><cmd>set relativenumber!<CR>")
+vim.keymap.set("n", "<leader>tw", "<cmd>set wrap!<CR>")
+vim.keymap.set("n", "<leader>tn", "<cmd>set number!<CR><cmd>set relativenumber!<CR>")
 
 -- nav keeping cursor centered
 vim.keymap.set("n", "J", "mzJ`z")
