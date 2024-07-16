@@ -136,6 +136,12 @@ return packer.startup {
         use "chrisgrieser/nvim-various-textobjs"
         -- use 'nvim-treesitter/nvim-treesitter-context'
         use 'theprimeagen/harpoon'
+        use {
+            'theprimeagen/git-worktree.nvim',
+            config = function ()
+                require("git-worktree").setup()
+            end,
+        }
         use 'mbbill/undotree'
         use 'tpope/vim-fugitive'
 
