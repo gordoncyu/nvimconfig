@@ -3,10 +3,31 @@ vim.keymap.set("n", "<leader>pv", vim.cmd.Ex)
 
 -- set things
 vim.keymap.set("n", "<leader>nh", "<cmd>noh<CR>")
-vim.keymap.set("n", "<leader>sw", "<cmd>set wrap!<CR>")
-vim.keymap.set("n", "<leader>sn", "<cmd>set number!<CR><cmd>set relativenumber!<CR>")
 vim.keymap.set("n", "<leader>tw", "<cmd>set wrap!<CR>")
 vim.keymap.set("n", "<leader>tn", "<cmd>set number!<CR><cmd>set relativenumber!<CR>")
+local function toggle_diagnostic_underline()
+    local groups = {
+        "DiagnosticUnderlineError",
+        "DiagnosticUnderlineWarn",
+        "DiagnosticUnderlineInfo",
+        "DiagnosticUnderlineHint",
+        "DiagnosticUnderlineOk"
+    }
+
+    for _, group in ipairs(groups) do
+        -- Get current highlight settings
+        local hl = vim.api.nvim_get_hl_by_name(group, true)
+        
+        -- Toggle underline
+        hl.underline = not hl.underline
+        
+        -- Set the modified highlight
+        vim.api.nvim_set_hl(0, group, hl)
+    end
+end
+
+vim.keymap.set('n', '<leader>tdu', toggle_diagnostic_underline, { noremap = true, silent = true })
+
 
 -- nav keeping cursor centered
 vim.keymap.set("n", "J", "mzJ`z")
