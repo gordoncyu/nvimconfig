@@ -93,7 +93,7 @@ return packer.startup {
         use 'bloznelis/before.nvim'
 
         use {
-            'feline-nvim/feline.nvim',
+            'freddiehaddad/feline.nvim',
             requires = {
                 'lewis6991/gitsigns.nvim'
             },
