@@ -70,6 +70,21 @@ return packer.startup {
         use 'nvim-telescope/telescope-ui-select.nvim'
         use 'kelly-lin/ranger.nvim'
 
+        use {
+            'leath-dub/snipe.nvim',
+            config = function()
+                require('snipe').setup({
+                    ui = {
+                        position = "center",
+                    },
+                })
+                vim.keymap.set({'n', 'x'}, 'go', function () 
+                    require("snipe").open_buffer_menu()
+                    vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes('<C-w>q', true, false, true), 'n', false)
+                end)
+            end,
+        }
+
         use { 'kepano/flexoki-neovim', as = 'flexoki', }
 
         use {
