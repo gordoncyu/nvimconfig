@@ -119,6 +119,7 @@ return packer.startup {
             'rcarriga/nvim-notify',
             config = function()
                 vim.notify = require('notify')
+                vim.keymap.set({'n', 'x'}, '<leader>vn', function() require('telescope').extensions.notify.notify() end, {desc = "View notifications"})
             end,
         }
 
