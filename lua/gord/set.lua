@@ -1,3 +1,5 @@
+vim.opt.ttimeout = true
+
 -- vim.o.mouse = ""
 vim.o.foldmethod = "marker"
 vim.o.foldmarker = "<fold<<,>fold>>"
