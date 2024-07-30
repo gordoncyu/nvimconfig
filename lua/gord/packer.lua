@@ -182,7 +182,7 @@ return packer.startup {
         use 'kylechui/nvim-surround'
         use 'windwp/nvim-autopairs'
         use 'windwp/nvim-ts-autotag'
-        use 'tpope/vim-commentary'
+        use 'numToStr/Comment.nvim'
         use {
             'tummetott/unimpaired.nvim',
             config = function ()
