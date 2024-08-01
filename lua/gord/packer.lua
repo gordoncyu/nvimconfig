@@ -30,13 +30,6 @@ return packer.startup {
         use 'wbthomason/packer.nvim'
 
         use {
-            'blumaa/ohne-accidents',
-            config = function()
-                require("ohne-accidents").setup()
-            end
-        }
-
-        use {
             "folke/which-key.nvim",
             config = function()
             vim.o.timeout = true
