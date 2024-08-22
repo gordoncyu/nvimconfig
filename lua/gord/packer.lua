@@ -243,6 +243,16 @@ return packer.startup {
             end,
             ft = { "markdown" },
         }
+        -- use {
+        --     "adalessa/markdown-preview.nvim",
+        --     requires = {
+        --         "nvim-lua/plenary.nvim",
+        --     },
+        --     config = function()
+        --         require("markdown-preview").setup()
+        --     end,
+        -- }
+
     end,
     config = {
         git = {
