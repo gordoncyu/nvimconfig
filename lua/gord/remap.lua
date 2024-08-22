@@ -2,6 +2,16 @@ vim.g.mapleader = " "
 vim.keymap.set("n", "<leader>pv", vim.cmd.Ex)
 
 -- set things
+vim.keymap.set("n", "<leader>stw", function ()
+    local num = vim.fn.input('Enter tab width: ')
+    num = tonumber(num)
+    if num then
+        vim.opt.tabstop = num
+        vim.opt.shiftwidth = num
+    else
+        print('Invalid input')
+    end
+end)
 vim.keymap.set("n", "<leader>nh", "<cmd>noh<CR>")
 vim.keymap.set("n", "<leader>tw", "<cmd>set wrap!<CR>")
 vim.keymap.set("n", "<leader>tn", "<cmd>set number!<CR><cmd>set relativenumber!<CR>")
