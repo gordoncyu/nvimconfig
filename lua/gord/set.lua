@@ -46,3 +46,32 @@ vim.defer_fn(function()
     hi Pmenu blend=0
     ]])
 end, 100)
+
+local prev_timeoutlen = vim.o.timeoutlen
+
+vim.api.nvim_create_autocmd("CmdlineEnter", {
+    callback = function()
+        prev_timeoutlen = vim.o.timeoutlen
+        vim.o.timeoutlen = 4000
+    end
+})
+
+vim.api.nvim_create_autocmd("CmdlineLeave", {
+    callback = function()
+        vim.o.timeoutlen = prev_timeoutlen
+    end
+})
+
+vim.api.nvim_create_autocmd("InsertEnter", {
+    callback = function()
+        prev_timeoutlen = vim.o.timeoutlen
+        vim.o.timeoutlen = 4000
+    end
+})
+
+vim.api.nvim_create_autocmd("InsertLeave", {
+    callback = function()
+        vim.o.timeoutlen = prev_timeoutlen
+    end
+})
+
