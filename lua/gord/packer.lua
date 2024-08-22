@@ -156,8 +156,6 @@ return packer.startup {
         use 'mbbill/undotree'
         use 'tpope/vim-fugitive'
 
-        use 'sheerun/vim-polyglot'
-
         use {
             'VonHeikemen/lsp-zero.nvim',
             branch = 'v3.x',
