@@ -12,6 +12,17 @@ vim.keymap.set("n", "<leader>stw", function ()
         print('Invalid input')
     end
 end)
+local mouse_on_setting = vim.o.mouse
+vim.keymap.set('n', '<leader>tm', function()
+    if vim.o.mouse ~= "" then
+        mouse_on_setting = vim.o.mouse
+        vim.o.mouse = ""
+        print("Mouse disabled")
+    else
+        vim.o.mouse = mouse_on_setting
+        print("Mouse enabled")
+    end
+end, { noremap = true, silent = true })
 vim.keymap.set("n", "<leader>nh", "<cmd>noh<CR>")
 vim.keymap.set("n", "<leader>tw", "<cmd>set wrap!<CR>")
 vim.keymap.set("n", "<leader>tn", "<cmd>set number!<CR><cmd>set relativenumber!<CR>")
