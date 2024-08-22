@@ -1,8 +1,5 @@
---vim.keymap.set('n', '<cr>', "<nop>")
---vim.keymap.set('n', '<cr>', '<cmd>echo "New command"<CR>')
 vim.keymap.set('n', '<leader>jos', '<cmd>call jukit#splits#output()<CR>')
 vim.keymap.set('n', '<leader>jts', '<cmd>call jukit#splits#term()<CR>')
--- vim.keymap.set('n', '<leader>jso', '<cmd>call jukit#splits#show_last_cell_output(1)<CR>')
 vim.keymap.set('n', '<leader>js', '<cmd>call jukit#send#line()<CR>')
 -- vim.keymap.set('v', '<leader>js', '<cmd>call jukit#send#selection()<CR>')
 -- For the love of God I cannot get this to work through lua bindings. Time for vimscript directly from the docs
