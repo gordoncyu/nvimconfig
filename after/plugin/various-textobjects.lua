@@ -21,7 +21,7 @@ vim.keymap.set({ "o", "x" }, "ag", "<cmd>lua require('various-textobjs').greedyO
 vim.keymap.set({ "o", "x" }, "is", "<cmd>lua require('various-textobjs').subword('inner')<CR>", {desc="subword"})
 vim.keymap.set({ "o", "x" }, "as", "<cmd>lua require('various-textobjs').subword('outer')<CR>", {desc="subword including trailing '_- '"})
 
-vim.keymap.set({ "o", "x" }, "rc", "<cmd>lua require('various-textobjs').toNextClosingBracket()<CR>", {desc="to next bracket"})
+vim.keymap.set({ "o", "x" }, "rb", "<cmd>lua require('various-textobjs').toNextClosingBracket()<CR>", {desc="to next bracket"})
 
 vim.keymap.set({ "o", "x" }, "q", "<cmd>lua require('various-textobjs').toNextQuotationMark()<CR>", {desc="to next quote"})
 
