@@ -114,6 +114,7 @@ return packer.startup {
             "utilyre/barbecue.nvim",
             tag = "*",
             requires = {
+                "lewis6991/gitsigns.nvim",
                 "SmiteshP/nvim-navic",
                 "nvim-tree/nvim-web-devicons", -- optional dependency
             },
