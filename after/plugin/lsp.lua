@@ -48,6 +48,16 @@ local cmp_mappings = lsp_zero.defaults.cmp_mappings({
     ["<C-Space>"] = cmp.mapping.complete(),
 })
 
+vim.keymap.set({'n', 'c', 'i'}, '<C-s><C-a>', function() 
+    cmp.abort() 
+end)
+
+vim.o.cedit = '<C-\\><C-f>'
+vim.keymap.set('c', '<C-f>',function()
+    cmp.abort()
+    vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<C-\\><C-f>", true, false, true), 'n', true)
+end)
+
 cmp.setup({
     snippet = {
         -- REQUIRED - you must specify a snippet engine
