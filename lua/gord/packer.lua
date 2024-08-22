@@ -48,7 +48,7 @@ return packer.startup {
                         }
                     }
                 })
-                vim.keymap.set({'n', 'v', 's'}, "<leader>z", '<cmd>ZenMode<CR>')
+                vim.keymap.set({'n', 'v', 's'}, "<leader>z", '<cmd>ZenMode<CR>', {desc="toggle ZenMode"})
             end,
         }
 
@@ -74,7 +74,7 @@ return packer.startup {
                 vim.keymap.set({'n', 'x'}, 'go', function () 
                     require("snipe").open_buffer_menu()
                     vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes('<C-w>q', true, false, true), 'n', false)
-                end)
+                end, {desc="go to buffer"})
             end,
         }
 

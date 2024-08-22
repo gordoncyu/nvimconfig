@@ -5,4 +5,4 @@ require('snipe').setup({
 })
 vim.keymap.set({'n', 'x'}, 'go', function () 
     require("snipe").open_buffer_menu()
-end)
+end, {desc="go to buffer"})

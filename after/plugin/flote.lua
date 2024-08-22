@@ -5,4 +5,4 @@ flote.setup {
     window_style = '',
 }
 
-vim.keymap.set("n", "<leader>pn", "<cmd>Flote<CR>")
+vim.keymap.set("n", "<leader>pn", "<cmd>Flote<CR>", {desc="open project-wide note"})

@@ -13,21 +13,23 @@ lsp_zero.on_attach(function(client, bufnr)
     -- to learn the available actions
     lsp_zero.default_keymaps({ buffer = bufnr })
 
-    local opts = { buffer = bufnr, remap = false }
+    local function get_opts(desc)
+        return { buffer = bufnr, remap = false, desc = desc }
+    end
 
-    vim.keymap.set("n", "gd", function() tbuiltin.lsp_definitions() end, opts)
-    vim.keymap.set("n", "gr", function() tbuiltin.lsp_references() end, opts)
-    vim.keymap.set("n", "gc", function() tbuiltin.lsp_incoming_calls() end, opts)
-    vim.keymap.set("n", "K", function() vim.lsp.buf.hover() end, opts)
-    vim.keymap.set("n", "<leader>vd", function() vim.diagnostic.open_float() end, opts)
-    vim.keymap.set("n", "<leader>vbd", function() tbuiltin.diagnostics({ bufnr = 0 }) end, opts)
-    vim.keymap.set("n", "<leader>vad", function() tbuiltin.diagnostics() end, opts)
-    vim.keymap.set("n", "<leader>vws", function() tbuiltin.lsp_workspace_symbols() end, opts)
-    vim.keymap.set("n", "<leader>vca", function() vim.lsp.buf.code_action() end, opts)
-    vim.keymap.set("n", "<leader>vss", function() vim.lsp.buf.signature_help() end, opts)
-    vim.keymap.set("n", "[d", function() vim.diagnostic.goto_next() end, opts)
-    vim.keymap.set("n", "]d", function() vim.diagnostic.goto_prev() end, opts)
-    vim.keymap.set("n", "<leader>rn", function() vim.lsp.buf.rename() end, opts)
+    vim.keymap.set("n", "gd", function() tbuiltin.lsp_definitions() end, get_opts("go to definition"))
+    vim.keymap.set("n", "gr", function() tbuiltin.lsp_references() end, get_opts("go to references"))
+    vim.keymap.set("n", "gc", function() tbuiltin.lsp_incoming_calls() end, get_opts("go to function calls"))
+    vim.keymap.set("n", "K", function() vim.lsp.buf.hover() end, get_opts("show symbol details"))
+    vim.keymap.set("n", "<leader>vd", function() vim.diagnostic.open_float() end, get_opts("view diagnostic"))
+    vim.keymap.set("n", "<leader>vbd", function() tbuiltin.diagnostics({ bufnr = 0 }) end, get_opts("view all diagnostics buffer-wide"))
+    vim.keymap.set("n", "<leader>vad", function() tbuiltin.diagnostics() end, get_opts("view all diagnostics project-wide"))
+    vim.keymap.set("n", "<leader>vws", function() tbuiltin.lsp_workspace_symbols() end, get_opts("view symbols project-wide"))
+    vim.keymap.set("n", "<leader>vca", function() vim.lsp.buf.code_action() end, get_opts("view code actions"))
+    vim.keymap.set("n", "<leader>vss", function() vim.lsp.buf.signature_help() end, get_opts("view signature"))
+    vim.keymap.set("n", "[d", function() vim.diagnostic.goto_next() end, get_opts("go to next diagnostic"))
+    vim.keymap.set("n", "]d", function() vim.diagnostic.goto_prev() end, get_opts("go to previous diagnostic"))
+    vim.keymap.set("n", "<leader>rn", function() vim.lsp.buf.rename() end, get_opts("rename symbol"))
 end)
 
 require("mason").setup()
@@ -50,13 +52,13 @@ local cmp_mappings = lsp_zero.defaults.cmp_mappings({
 
 vim.keymap.set({'n', 'c', 'i'}, '<C-s><C-a>', function() 
     cmp.abort() 
-end)
+end, {desc="abort completion"})
 
 vim.o.cedit = '<C-\\><C-f>'
 vim.keymap.set('c', '<C-f>',function()
     cmp.abort()
     vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<C-\\><C-f>", true, false, true), 'n', true)
-end)
+end, {desc="opens the command-line window"})
 
 cmp.setup({
     snippet = {
@@ -113,6 +115,7 @@ cmp.setup.cmdline(':', {
 --require('lspconfig').lua_ls.setup(lsp.nvim_lua_ls())
 local lspconfig = require('lspconfig')
 lspconfig.gleam.setup({})
+lspconfig.texlab.setup({})
 
 lsp_zero.set_sign_icons({
     error = '✘',
