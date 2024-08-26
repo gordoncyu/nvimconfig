@@ -58,6 +58,9 @@ vim.keymap.set("n", "G", "Gzz", {desc="cursor to line N, default last line"})
 vim.keymap.set("n", "n", "nzzzv", {desc="repeat the latest '/' or '?' N times"})
 vim.keymap.set("n", "N", "Nzzzv", {desc="repeat the latest '/' or '?' N times in"})
 
+-- view registers
+vim.keymap.set({'n', 'x'}, "<leader>re", "<cmd>registers<CR>", {desc="view registers"})
+
 -- yank to system clipboard
 vim.keymap.set("n", "<leader>y", "\"+y", {desc="yank to system clipboard"})
 vim.keymap.set("v", "<leader>y", "\"+y", {desc="yank to system clipboard"})
