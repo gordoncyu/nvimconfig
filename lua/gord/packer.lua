@@ -30,6 +30,19 @@ return packer.startup {
         use 'wbthomason/packer.nvim'
 
         use {
+            'bronson/vim-crosshairs',
+            config = function ()
+                vim.opt.cursorline = true
+                vim.opt.cursorcolumn = true
+                vim.keymap.set({'n', 'x'}, "<leader>tc", function()
+                            local cursorline = vim.opt.cursorline
+                            vim.opt.cursorline = not cursorline
+                            vim.opt.cursorcolumn = not cursorline
+                end, {desc="toggle cursor crosshair"})
+            end,
+        }
+
+        use {
             "folke/which-key.nvim",
             config = function()
             vim.o.timeout = true
