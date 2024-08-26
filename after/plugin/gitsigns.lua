@@ -1,4 +1,20 @@
 require('gitsigns').setup{
+    signs = {
+        add          = { text = '┃' },
+        change       = { text = '┃' },
+        delete       = { text = '_' },
+        topdelete    = { text = '‾' },
+        changedelete = { text = '~' },
+        untracked    = { text = '┆' },
+    },
+    signs_staged = {
+        add          = { text = '┃s' },
+        change       = { text = '┃s' },
+        delete       = { text = '_s' },
+        topdelete    = { text = '‾s' },
+        changedelete = { text = '~s' },
+        untracked    = { text = '┆s' },
+    },
     on_attach = function(bufnr)
         local gs = package.loaded.gitsigns
 
