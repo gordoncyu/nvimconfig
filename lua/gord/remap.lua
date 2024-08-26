@@ -68,6 +68,7 @@ vim.keymap.set({"n", "v"}, "<leader>P", "\"+P", {desc="paste from system clipboa
 
 -- visually select over pasted text
 vim.keymap.set("n", "gp", "`[v`]", {desc="highlight over previously operated text"})
+vim.keymap.set("n", "gP", "`[v`]V", {desc="highlight linewise over previously operated text"})
 
 -- gV
 vim.keymap.set("n", "gV", "gvV", {desc="reselect the previous Visual area linewise"})
