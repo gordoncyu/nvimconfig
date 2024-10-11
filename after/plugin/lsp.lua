@@ -34,7 +34,7 @@ end)
 
 require("mason").setup()
 require("mason-lspconfig").setup {
-    ensure_installed = { 'ts_ls', 'eslint', 'jsonls', 'jdtls', 'lua_ls', 'basedpyright', 'rust_analyzer', 'clangd'},
+    ensure_installed = { 'ts_ls', 'eslint', 'jsonls', 'jdtls', 'lua_ls', 'pyright', 'rust_analyzer', 'clangd'},
     handlers = {
         lsp_zero.default_setup,
         jdtls = lsp_zero.noop,
