@@ -42,3 +42,34 @@ endfunction
 " Define a command that checks for a bang. It will pass 1 to the function if the bang is present.
 command! -bang BD call DeleteBufferKeepPane(<bang>0 == '' ? 0 : 1)
 ]])
+
+local function add_unwritten_buffers_to_qfl()
+    local buffers = vim.api.nvim_list_bufs()
+    local qf_list = {}
+    for _, buf in ipairs(buffers) do
+        if vim.api.nvim_buf_get_option(buf, 'modified') then
+            local buftype = vim.bo[buf].buftype
+            if buftype == '' or buftype == 'acwrite' then
+                print"+actual1"
+                local bufname = vim.api.nvim_buf_get_name(buf)
+                table.insert(qf_list, {
+                    bufnr = buf,
+                    filename = bufname,
+                    lnum = 1,
+                    text = "Unwritten buffer: " .. bufname
+                })
+            end
+        end
+    end
+
+    if #qf_list > 0 then
+
+        vim.fn.setqflist(qf_list, 'r')
+        vim.cmd('copen')
+    else
+        print("No unwritten buffers found.")
+    end
+end
+
+vim.api.nvim_create_user_command('Cleanunwr', add_unwritten_buffers_to_qfl, {})
+
