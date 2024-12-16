@@ -1,11 +1,16 @@
 require("various-textobjs").setup {
-	lookForwardSmall = 15,
-	lookForwardBig = 45,
+	lookForward = {
+        small = 15,
+        big = 45,
+    },
 
-	useDefaultKeymaps = false,
-	-- disabledKeymaps = {},
+	keymaps = {
+        useDefaults = false,
+    },
 
-	notifyNotFound = true,
+	notify = {
+        whenObjectNotFound = true,
+    },
 }
 
 vim.keymap.set({ "o", "x" }, "ii", "<cmd>lua require('various-textobjs').indentation('inner', 'inner')<CR>", {desc="indentation"})
