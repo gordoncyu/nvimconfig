@@ -210,13 +210,26 @@ return packer.startup {
                 require('unimpaired').setup()
             end
         }
+        -- unix commands integrated
+        use 'tpope/vim-repeat'
         use 'tpope/vim-eunuch'
+
+        use 'inkarkat/vim-ingo-library'
+        use {
+            'inkarkat/vim-RepeatableYank',
+            dependencies = {
+                'inkarkat/vim-ingo-library',
+                'tpope/vim-repeat',
+            },
+        }
 
         use 'ggandor/leap.nvim'
 
+        -- blessing upon this world
         use 'unblevable/quick-scope'
         use 'lukas-reineke/indent-blankline.nvim'
 
+        -- nvim lsp
         use 'folke/neodev.nvim'
         use 'neovim/nvim-lspconfig'
         use 'hrsh7th/cmp-nvim-lsp'

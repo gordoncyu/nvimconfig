@@ -111,8 +111,8 @@ require'nvim-treesitter.configs'.setup {
               ["i?"] = "@conditional.inner",
               ["a="] = "@assignment.outer",
               ["=r"] = "@assignment.rhs",
-              ["=l"] = "@assignment.lhs",
-              ["i="] = "@assignment.inner",
+              -- ["=l"] = "@assignment.lhs",
+              -- ["i="] = "@assignment.inner",
               ["aa"] = "@parameter.outer",
               ["ia"] = "@parameter.inner",
               ["ah"] = "@attribute.outer", -- really only in html (and astro lmao)

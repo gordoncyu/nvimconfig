@@ -13,7 +13,7 @@ vim.keymap.set("n", "<leader>stw", function ()
     end
 end, {desc="set tab width"})
 local mouse_on_setting = vim.o.mouse
-vim.keymap.set('n', '<leader>tm', function()
+vim.keymap.set('n', '<leader>tom', function()
     if vim.o.mouse ~= "" then
         mouse_on_setting = vim.o.mouse
         vim.o.mouse = ""
@@ -24,8 +24,8 @@ vim.keymap.set('n', '<leader>tm', function()
     end
 end, { noremap = true, silent = true, desc="toggle mouse" })
 vim.keymap.set("n", "<leader>nh", "<cmd>noh<CR>", {desc="disable highlight"})
-vim.keymap.set("n", "<leader>tw", "<cmd>set wrap!<CR>", {desc="toggle line wrap"})
-vim.keymap.set("n", "<leader>tn", "<cmd>set number!<CR><cmd>set relativenumber!<CR>", {desc="toggle relative line numbers"})
+vim.keymap.set("n", "<leader>tow", "<cmd>set wrap!<CR>", {desc="toggle line wrap"})
+vim.keymap.set("n", "<leader>ton", "<cmd>set number!<CR><cmd>set relativenumber!<CR>", {desc="toggle relative line numbers"})
 local function toggle_diagnostic_underline()
     local groups = {
         "DiagnosticUnderlineError",
@@ -47,8 +47,15 @@ local function toggle_diagnostic_underline()
     end
 end
 
-vim.keymap.set('n', '<leader>tdu', toggle_diagnostic_underline, { noremap = true, silent = true, desc="toggle diagnostic underlines" })
+vim.keymap.set('n', '<leader>todu', toggle_diagnostic_underline, { noremap = true, silent = true, desc="toggle diagnostic underlines" })
+                vim.opt.cursorline = true
+                vim.opt.cursorcolumn = true
 
+
+-- tab things
+
+vim.keymap.set('n', '<leader>tn', "<cmd>tabnew<CR>")
+vim.keymap.set('n', '<leader>tc', "<cmd>tabclose<CR>")
 
 -- nav keeping cursor centered
 vim.keymap.set("n", "J", "mzJ`z", {desc="Join N lines; default is 2"})

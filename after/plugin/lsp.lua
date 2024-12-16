@@ -18,6 +18,7 @@ lsp_zero.on_attach(function(client, bufnr)
     end
 
     vim.keymap.set("n", "gd", function() tbuiltin.lsp_definitions() end, get_opts("go to definition"))
+    vim.keymap.set("n", "gi", function() tbuiltin.lsp_implementations() end, get_opts("go to definition"))
     vim.keymap.set("n", "gr", function() tbuiltin.lsp_references() end, get_opts("go to references"))
     vim.keymap.set("n", "gc", function() tbuiltin.lsp_incoming_calls() end, get_opts("go to function calls"))
     vim.keymap.set("n", "K", function() vim.lsp.buf.hover() end, get_opts("show symbol details"))
@@ -50,6 +51,16 @@ local cmp_mappings = lsp_zero.defaults.cmp_mappings({
     ["<C-Space>"] = cmp.mapping.complete(),
 })
 
+local luasnip = require('luasnip')
+
+vim.keymap.set('i', '<C-s><Tab>', function() 
+    luasnip.jump(1)
+end, {desc="luasnip jump to next"})
+
+vim.keymap.set('i', '<C-s><S-Tab>', function() 
+    luasnip.jump(-1)
+end, {desc="luasnip jump to previous"})
+
 vim.keymap.set({'n', 'c', 'i'}, '<C-s><C-a>', function() 
     cmp.abort() 
 end, {desc="abort completion"})
@@ -64,7 +75,7 @@ cmp.setup({
     snippet = {
         -- REQUIRED - you must specify a snippet engine
         expand = function(args)
-            require('luasnip').lsp_expand(args.body) -- For `luasnip` users.
+            luasnip.lsp_expand(args.body) -- For `luasnip` users.
         end,
     },
     window = {
@@ -116,6 +127,8 @@ cmp.setup.cmdline(':', {
 local lspconfig = require('lspconfig')
 lspconfig.gleam.setup({})
 lspconfig.texlab.setup({})
+lspconfig.racket_langserver.setup({})
+lspconfig.koka.setup{}
 
 lsp_zero.set_sign_icons({
     error = '✘',

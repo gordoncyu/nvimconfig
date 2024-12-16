@@ -1,10 +1,13 @@
+
+vim.api.nvim_set_hl(0, "iblWhitespacePrimary", { bg = "#0c0c0c" })
+
 local highlight = {
+    "iblWhitespacePrimary",
     "Whitespace",
-    "CursorColumn",
 }
 
 require("ibl").setup {
-    indent = { highlight = highlight, char = "" },
+    indent = { highlight = highlight, char = "", priority = 0 },
     whitespace = {
         highlight = highlight,
         remove_blankline_trail = false,
