@@ -4,6 +4,30 @@ vim.api.nvim_create_user_command('WE', function ()
 end,
 {nargs=0})
 
+vim.api.nvim_create_user_command("WP", function(opts)
+    local expanded = vim.fn.expand(opts.args)
+    local dirname = vim.fn.fnamemodify(expanded, ":h")
+    if vim.fn.isdirectory(dirname) == 0 then
+        vim.fn.mkdir(dirname, "p")
+    end
+    vim.cmd("write " .. vim.fn.fnameescape(expanded))
+end, {
+    nargs = 1,
+    complete = "file",
+})
+
+vim.api.nvim_create_user_command("EP", function(opts)
+    local expanded = vim.fn.expand(opts.args)
+    local dirname = vim.fn.fnamemodify(expanded, ":h")
+    if vim.fn.isdirectory(dirname) == 0 then
+        vim.fn.mkdir(dirname, "p")
+    end
+    vim.cmd("edit " .. vim.fn.fnameescape(expanded))
+end, {
+    nargs = 1,
+    complete = "file",
+})
+
 vim.cmd([[
 " in vimscript because doing it in lua screwed over vim-tmux-navigator
 " dang vimscript syntax highlighting within lua files

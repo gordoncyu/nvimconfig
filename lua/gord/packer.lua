@@ -53,19 +53,35 @@ return packer.startup {
         }
 
         use {
-            "folke/zen-mode.nvim",
-            config = function()
-                require("zen-mode").setup({
+            'declancm/maximize.nvim',
+            config = function() 
+                mxm = require('maximize')
+                mxm.setup({
                     plugins = {
-                        options = {
-                            laststatus = 3, -- keep status line
-                        }
+                        aerial = { enable = false }, -- enable aerial.nvim integration
+                        dapui = { enable = false },  -- enable nvim-dap-ui integration
+                        tree = { enable = false },   -- enable nvim-tree.lua integration
                     }
-                })
-                vim.keymap.set({'n', 'v', 's'}, "<leader>z", '<cmd>ZenMode<CR>', {desc="toggle ZenMode"})
-            end,
+                }) 
+                vim.keymap.set({'n', 'v', 's'}, "<leader>z", mxm.toggle, {desc="toggle ZenMode"})
+            end
         }
 
+        -- use {
+        --     "folke/zen-mode.nvim",
+        --     config = function()
+        --         require("zen-mode").setup({
+        --             plugins = {
+        --                 options = {
+        --                     laststatus = 3, -- keep status line
+        --                 }
+        --             }
+        --         })
+        --         vim.keymap.set({'n', 'v', 's'}, "<leader>z", '<cmd>ZenMode<CR>', {desc="toggle ZenMode"})
+        --     end,
+        -- }
+
+        -- floating per-project note buffer
         use 'JellyApple102/flote.nvim'
 
         use {
@@ -74,24 +90,11 @@ return packer.startup {
             requires = { { 'nvim-lua/plenary.nvim' } }
         }
 
+        -- menu select fuzzy finding
         use 'nvim-telescope/telescope-ui-select.nvim'
         use 'kelly-lin/ranger.nvim'
 
-        use {
-            'leath-dub/snipe.nvim',
-            config = function()
-                require('snipe').setup({
-                    ui = {
-                        position = "center",
-                    },
-                })
-                vim.keymap.set({'n', 'x'}, 'go', function () 
-                    require("snipe").open_buffer_menu()
-                    vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes('<C-w>q', true, false, true), 'n', false)
-                end, {desc="go to buffer"})
-            end,
-        }
-
+        -- color scheme
         use { 'kepano/flexoki-neovim', as = 'flexoki', }
 
         use {
@@ -110,8 +113,10 @@ return packer.startup {
             }
         }
 
+        -- git gutter
         use 'lewis6991/gitsigns.nvim'
 
+        -- edit list
         use 'bloznelis/before.nvim'
 
         use {
@@ -124,6 +129,7 @@ return packer.startup {
             end
         }
 
+        -- top status bar path file class func dir
         use {
             "utilyre/barbecue.nvim",
             tag = "*",
@@ -199,6 +205,7 @@ return packer.startup {
         use 'theHamsta/nvim-dap-virtual-text'
         use 'jay-babu/mason-nvim-dap.nvim'
 
+        -- move visual selection
         use 'echasnovski/mini.move'
         use 'kylechui/nvim-surround'
         use 'windwp/nvim-autopairs'

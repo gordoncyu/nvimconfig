@@ -37,11 +37,11 @@ local function toggle_diagnostic_underline()
 
     for _, group in ipairs(groups) do
         -- Get current highlight settings
-        local hl = vim.api.nvim_get_hl_by_name(group, true)
-        
+        local hl = vim.api.nvim_get_hl(0, {name=group})
+
         -- Toggle underline
         hl.underline = not hl.underline
-        
+
         -- Set the modified highlight
         vim.api.nvim_set_hl(0, group, hl)
     end
@@ -53,9 +53,12 @@ vim.keymap.set('n', '<leader>todu', toggle_diagnostic_underline, { noremap = tru
 
 
 -- tab things
-
-vim.keymap.set('n', '<leader>tn', "<cmd>tabnew<CR>")
-vim.keymap.set('n', '<leader>tc', "<cmd>tabclose<CR>")
+vim.keymap.set('n', '<leader>tc', "<cmd>tabnew<CR>")
+vim.keymap.set('n', '<leader>tx', "<cmd>tabclose<CR>")
+vim.keymap.set('n', '<leader>tn', "<cmd>tabnext<CR>")
+vim.keymap.set('n', '<leader>tN', "<cmd>tabprev<CR>")
+for i=1,9 do vim.keymap.set('n', '<leader>t' .. i, "<cmd>" .. i .. "tabn<CR>", {desc="tab " .. i}) end
+vim.keymap.set('n', '<leader>t' .. 0, "<cmd>" .. 10 .. "tabn<CR>", {desc="tab " .. 10})
 
 -- nav keeping cursor centered
 vim.keymap.set("n", "J", "mzJ`z", {desc="Join N lines; default is 2"})
@@ -67,6 +70,9 @@ vim.keymap.set("n", "N", "Nzzzv", {desc="repeat the latest '/' or '?' N times in
 
 -- view registers
 vim.keymap.set({'n', 'x'}, "<leader>re", "<cmd>registers<CR>", {desc="view registers"})
+
+-- refresh theme
+vim.keymap.set({'n', 'x'}, "<leader>rt", "<cmd>silent! exe \"so \" . stdpath(\"config\") . \"/after/plugin/flexoki.lua\" <CR>", {desc="refresh theme"})
 
 -- yank to system clipboard
 vim.keymap.set("n", "<leader>y", "\"+y", {desc="yank to system clipboard"})
@@ -84,7 +90,7 @@ vim.keymap.set("n", "gP", "`[v`]V", {desc="highlight linewise over previously op
 vim.keymap.set("n", "gV", "gvV", {desc="reselect the previous Visual area linewise"})
 
 -- v/V/<C-v> does not toggle, only enables
-for i, key in pairs({"v", "V", ""}) do
+for _, key in pairs({"v", "V", ""}) do
     vim.keymap.set("x", key, function ()
         local mode = vim.api.nvim_get_mode().mode
         if mode == key then

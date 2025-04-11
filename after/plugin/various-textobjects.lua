@@ -44,8 +44,9 @@ vim.keymap.set({ "o", "x" }, "h$", "<cmd>lua require('various-textobjs').nearEoL
 
 vim.keymap.set({ "o", "x" }, "g;", "<cmd>lua require('various-textobjs').lastChange()<CR>", {desc="last non-deleting change"})
 
-vim.keymap.set({ "o", "x" }, "il", "<cmd>lua require('various-textobjs').lineCharacterwise('inner')<CR>", {desc="line characterwise"})
-vim.keymap.set({ "o", "x" }, "al", "<cmd>lua require('various-textobjs').lineCharacterwise('outer')<CR>", {desc="line characterwise with indent and trailing spaces"})
+-- mostly useless -- use VC or 0D
+-- vim.keymap.set({ "o", "x" }, "il", "<cmd>lua require('various-textobjs').lineCharacterwise('inner')<CR>", {desc="line characterwise"})
+-- vim.keymap.set({ "o", "x" }, "al", "<cmd>lua require('various-textobjs').lineCharacterwise('outer')<CR>", {desc="line characterwise with indent and trailing spaces"})
 
 vim.keymap.set({ "o", "x" }, "|", "<cmd>lua require('various-textobjs').column()<CR>", {desc="column, whatever that means. can take count"})
 

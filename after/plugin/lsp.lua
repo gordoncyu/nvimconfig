@@ -6,7 +6,7 @@ local lsp_zero = require('lsp-zero');
 local tbuiltin = require('telescope.builtin')
 
 lsp_zero.preset("recommended")
-lsp_zero_ui_float_border = 'shadow';
+-- local lsp_zero_ui_float_border = 'shadow';
 
 lsp_zero.on_attach(function(client, bufnr)
     -- see :help lsp-zero-keybindings
@@ -53,17 +53,25 @@ local cmp_mappings = lsp_zero.defaults.cmp_mappings({
 
 local luasnip = require('luasnip')
 
-vim.keymap.set('i', '<C-s><Tab>', function() 
+-- vim.keymap.set('i', '<C-s><Tab>', function() 
+--     luasnip.jump(1)
+-- end, {desc="luasnip jump to next"})
+--
+-- vim.keymap.set('i', '<C-s><S-Tab>', function() 
+--     luasnip.jump(-1)
+-- end, {desc="luasnip jump to previous"})
+--
+-- vim.keymap.set({'n', 'c', 'i'}, '<C-s><C-a>', function() 
+--     cmp.abort() 
+-- end, {desc="abort completion"})
+
+vim.keymap.set('i', '<C-s>', function() 
     luasnip.jump(1)
 end, {desc="luasnip jump to next"})
 
-vim.keymap.set('i', '<C-s><S-Tab>', function() 
-    luasnip.jump(-1)
-end, {desc="luasnip jump to previous"})
-
-vim.keymap.set({'n', 'c', 'i'}, '<C-s><C-a>', function() 
-    cmp.abort() 
-end, {desc="abort completion"})
+-- vim.keymap.set('i', '<C-S>', function() 
+--     luasnip.jump(-1)
+-- end, {desc="luasnip jump to previous"})
 
 vim.o.cedit = '<C-\\><C-f>'
 vim.keymap.set('c', '<C-f>',function()

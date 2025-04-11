@@ -11,7 +11,7 @@ function os.capture(cmd, raw)
 end
 
 -- Function to check if a command exists
-function command_exists(cmd)
+local function command_exists(cmd)
     local status = os.execute(cmd .. " >/dev/null 2>&1")
     return status == 0
 end
@@ -24,7 +24,7 @@ local gcc_version = gcc_version_output:match("%d+%.%d+%.%d+")
 local compiler = "gcc"
 
 if gcc_version then
-    local major, minor, mini = gcc_version:match("(%d+)%.(%d+)%.(%d+)")
+    local major, minor, _ = gcc_version:match("(%d+)%.(%d+)%.(%d+)")
     major = tonumber(major)
     minor = tonumber(minor)
 
@@ -39,7 +39,7 @@ if gcc_version then
     end
 end
 
-require'nvim-treesitter.install'.compilers = {compiler} 
+require'nvim-treesitter.install'.compilers = {compiler}
 
 require'nvim-treesitter.configs'.setup {
   -- A list of parser names, or "all" (the five listed parsers should always be installed)
@@ -110,9 +110,9 @@ require'nvim-treesitter.configs'.setup {
               ["a?"] = "@conditional.outer",
               ["i?"] = "@conditional.inner",
               ["a="] = "@assignment.outer",
-              ["=r"] = "@assignment.rhs",
-              -- ["=l"] = "@assignment.lhs",
-              -- ["i="] = "@assignment.inner",
+              ["=l"] = "@assignment.rhs",
+              ["=h"] = "@assignment.lhs",
+              ["i="] = "@assignment.inner",
               ["aa"] = "@parameter.outer",
               ["ia"] = "@parameter.inner",
               ["ah"] = "@attribute.outer", -- really only in html (and astro lmao)
@@ -152,7 +152,40 @@ require'nvim-treesitter.configs'.setup {
           -- * query_string: eg '@function.inner'
           -- * selection_mode: eg 'v'
           -- and should return true of false
-          include_surrounding_whitespace = true,
+          include_surrounding_whitespace = function (stuff)
+              local function inner ()
+                  local obj = stuff.query_string
+
+                  if string.find(obj, "%.inner") or
+                      string.find(obj, "%.[lr]hs") then
+                      -- vim.notify("is inner or hs")
+                      return false
+                  end
+
+                  local multiline_outer = {
+                      ["@function.outer"] = false,
+                      ["@function.inner"] = false,
+                      ["@class.outer"] = false,
+                      ["@call.outer"] = false,
+                      ["@comment.outer"] = false,
+                      ["@conditional.outer"] = false,
+                      ["@assignment.outer"] = false,
+                      ["@block.outer"] = false,
+                      ["@loop.outer"] = false,
+                      ["@return.outer"] = false,
+                      ["@statement.outer"] = false,
+                  }
+                  if multiline_outer[obj] == false then
+                    -- vim.notify("is multiline_outer")
+                    return false
+                  end
+
+                  return true
+              end
+              local ret = inner()
+              -- vim.notify("ts obj isw: " .. tostring(ret))
+              return ret
+          end,
       },
   },
 }
