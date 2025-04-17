@@ -117,8 +117,8 @@ require'nvim-treesitter.configs'.setup {
               ["ia"] = "@parameter.inner",
               ["ah"] = "@attribute.outer", -- really only in html (and astro lmao)
               ["ih"] = "@attribute.inner", -- can't think of any other single char that isn't already taken
-              ["aB"] = "@block.outer",
-              ["iB"] = "@block.inner",
+              ["ab"] = "@block.outer",
+              ["ib"] = "@block.inner",
               ["al"] = "@loop.outer",
               ["il"] = "@loop.inner",
               ["in"] = "@number.inner",

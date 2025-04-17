@@ -33,8 +33,8 @@ vim.keymap.set({ "o", "x" }, "q", "<cmd>lua require('various-textobjs').toNextQu
 vim.keymap.set({ "o", "x" }, "iq", "<cmd>lua require('various-textobjs').anyQuote('inner')<CR>", {desc="any quote inner"})
 vim.keymap.set({ "o", "x" }, "aq", "<cmd>lua require('various-textobjs').anyQuote('outer')<CR>", {desc="any quote outer"})
 
-vim.keymap.set({ "o", "x" }, "ib", "<cmd>lua require('various-textobjs').anyBracket('inner')<CR>", {desc="any bracket inner"})
-vim.keymap.set({ "o", "x" }, "ab", "<cmd>lua require('various-textobjs').anyBracket('outer')<CR>", {desc="any bracket outer"})
+-- vim.keymap.set({ "o", "x" }, "ib", "<cmd>lua require('various-textobjs').anyBracket('inner')<CR>", {desc="any bracket inner"})
+-- vim.keymap.set({ "o", "x" }, "ab", "<cmd>lua require('various-textobjs').anyBracket('outer')<CR>", {desc="any bracket outer"})
 
 vim.keymap.set({ "o", "x" }, "rp", "<cmd>lua require('various-textobjs').restOfParagraph()<CR>", {desc="rest of paragraph"})
 
