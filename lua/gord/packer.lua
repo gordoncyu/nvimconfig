@@ -144,13 +144,7 @@ return packer.startup {
                 end,
         }
 
-        use {
-            'rcarriga/nvim-notify',
-            config = function()
-                vim.notify = require('notify')
-                vim.keymap.set({'n', 'x'}, '<leader>vn', function() require('telescope').extensions.notify.notify() end, {desc = "View notifications"})
-            end,
-        }
+        use 'rcarriga/nvim-notify'
 
         use {
             'nvim-treesitter/nvim-treesitter',
