@@ -32,10 +32,10 @@ return packer.startup {
         use {
             'bronson/vim-crosshairs',
             config = function ()
-                cross_on = true
+                local cross_on = true
                 vim.opt.cursorline = cross_on
                 vim.opt.cursorcolumn = cross_on
-                vim.keymap.set({'n', 'x'}, "<leader>tc", function()
+                vim.keymap.set({'n', 'x'}, "<leader>toc", function()
                             cross_on = not cross_on
                             vim.opt.cursorline = cross_on
                             vim.opt.cursorcolumn = cross_on
