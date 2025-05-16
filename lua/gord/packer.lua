@@ -235,6 +235,8 @@ return packer.startup {
         use 'tpope/vim-repeat'
         use 'tpope/vim-eunuch'
 
+        use 'tpope/vim-obsession'
+
         use 'inkarkat/vim-ingo-library'
         use {
             'inkarkat/vim-RepeatableYank',
