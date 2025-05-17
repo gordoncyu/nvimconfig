@@ -29,6 +29,19 @@ return packer.startup {
         -- Packer can manage itself
         use 'wbthomason/packer.nvim'
 
+        use {
+            'glacambre/firenvim',
+            run = ':call firenvim#install(0)',
+            config = function ()
+                vim.g.firenvim_config = {
+                    globalSettings = { alt = "all" },
+                    localSettings = {
+                        [".*.?"] = {takeover = 'never', priority = 1000},
+                    }
+                }
+            end
+        }
+
         use{
             "nvim-neo-tree/neo-tree.nvim",
             branch = "v3.x",
