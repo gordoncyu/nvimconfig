@@ -162,20 +162,15 @@ return packer.startup {
             end
         }
 
-        -- top status bar path file class func dir
-        use {
-            "utilyre/barbecue.nvim",
-            tag = "*",
-            requires = {
-                "lewis6991/gitsigns.nvim",
-                "SmiteshP/nvim-navic",
-                "nvim-tree/nvim-web-devicons", -- optional dependency
-            },
-            after = "nvim-web-devicons",       -- keep this if you're using NvChad
-                config = function()
-                    require("barbecue").setup()
-                end,
-        }
+        use({
+            'Bekaboo/dropbar.nvim',
+            -- optional: fuzzy‑find inside the breadcrumb menus
+            requires = { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' },
+
+            config = function()
+                require('dropbar').setup()
+            end,
+        })
 
         use 'rcarriga/nvim-notify'
 
