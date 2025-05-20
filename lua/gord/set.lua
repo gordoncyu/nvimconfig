@@ -1,5 +1,7 @@
 vim.opt.ttimeout = true
 
+vim.g.clipboard = 'osc52'
+
 vim.o.mouse = ""
 vim.o.foldmethod = "marker"
 vim.o.foldmarker = "<fold<<,>fold>>"
