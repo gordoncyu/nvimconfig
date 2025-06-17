@@ -5,11 +5,23 @@
 
 -- let me just override the builtin so I can autonav to the created file/dir
 -- also create file/dir at current depth rather than dir under cursor if dir is under cursor. why is this not the default smh vscode users are dumb
+
+-- helper: returns true when a directory has **no** entries
+local function dir_is_empty(path)
+    local handle = vim.loop.fs_scandir(path)
+    if not handle then             -- couldn’t open = treat as empty
+        return true
+    end
+    return vim.loop.fs_scandir_next(handle) == nil
+end
+
 local custom_add_file = function(state)
     local node = state.tree:get_node()
     local parent_path
-    if node.type == "directory" then
-        parent_path = vim.fn.fnamemodify(node.path, ":h")
+    -- If the cursor is on an **empty** directory, create *inside* it;
+    -- otherwise stay at the current depth.
+    if node.type == "directory" and dir_is_empty(node.path) then
+        parent_path = node.path
     else
         parent_path = vim.fn.fnamemodify(node.path, ":h")
     end
@@ -40,8 +52,8 @@ end
 local custom_add_directory = function(state)
     local node = state.tree:get_node()
     local parent_path
-    if node.type == "directory" then
-        parent_path = vim.fn.fnamemodify(node.path, ":h")
+    if node.type == "directory" and dir_is_empty(node.path) then
+        parent_path = node.path
     else
         parent_path = vim.fn.fnamemodify(node.path, ":h")
     end
