@@ -68,3 +68,56 @@ telescope.setup({
 
 telescope.load_extension("ui-select")
 telescope.load_extension("git_worktree")
+
+local pickers = require("telescope.pickers")
+local finders = require("telescope.finders")
+local conf = require("telescope.config").values
+
+local function command_picker()
+    local cmds = vim.api.nvim_get_commands({})
+    local cmd_items = {}
+    for name, cmd in pairs(cmds) do
+        table.insert(cmd_items, name)
+    end
+
+    pickers.new({}, {
+        prompt_title = "Commands",
+        finder = finders.new_table {
+            results = cmd_items,
+        },
+        sorter = conf.generic_sorter({}),
+        attach_mappings = function(prompt_bufnr, map)
+            local exec = function()
+                local entry = action_state.get_selected_entry()
+                if not entry then return end
+                local cmd = entry[1]
+                actions.close(prompt_bufnr)
+                vim.cmd(cmd)
+            end
+
+            local to_cmdline = function()
+                local entry = action_state.get_selected_entry()
+                if not entry then return end
+                actions.close(prompt_bufnr)
+                vim.fn.feedkeys(":" .. entry[1])
+            end
+
+            local to_register = function()
+                local entry = action_state.get_selected_entry()
+                if not entry then return end
+                actions.close(prompt_bufnr)
+                vim.fn.setreg('"', entry[1])
+            end
+
+            map('i', '<CR>', exec)
+            map('i', '<C-y>', to_cmdline)
+
+            map('n', 'yy', to_register)
+
+            return true
+        end
+    }):find()
+end
+
+vim.keymap.set("n", "<leader>nc", command_picker, { desc = "Fuzzy Command Picker" })
+

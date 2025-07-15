@@ -162,7 +162,12 @@ return packer.startup {
             end,
         })
 
-        use 'rcarriga/nvim-notify'
+        use {
+            'rcarriga/nvim-notify',
+            config = function ()
+                vim.notify = require("notify")
+            end
+        }
 
         use {
             'nvim-treesitter/nvim-treesitter',
@@ -170,7 +175,7 @@ return packer.startup {
         }
 
         use 'nvim-treesitter/playground'
-        use('nvim-treesitter/nvim-treesitter-context')
+        use'nvim-treesitter/nvim-treesitter-context'
         use {
             "nvim-treesitter/nvim-treesitter-textobjects",
             after = "nvim-treesitter",

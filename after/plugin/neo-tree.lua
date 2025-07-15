@@ -334,6 +334,14 @@ local my_nt_mappings = {
 
 require("neo-tree").setup{
     open_files_on_setup = false,
+    event_handlers = {
+        {
+            event = "neo_tree_buffer_enter",
+            handler = function(arg)
+                vim.cmd [[ setlocal relativenumber ]]
+            end,
+        }
+    },
     filesystem = {
         hijack_netrw_behavior = "disabled",
     },
