@@ -142,16 +142,6 @@ return packer.startup {
         -- edit list
         use 'bloznelis/before.nvim'
 
-        use {
-            'freddiehaddad/feline.nvim',
-            requires = {
-                'lewis6991/gitsigns.nvim'
-            },
-            config = function()
-                require('feline').setup()
-            end
-        }
-
         use({
             'Bekaboo/dropbar.nvim',
             -- optional: fuzzy‑find inside the breadcrumb menus
@@ -276,7 +266,18 @@ return packer.startup {
 
         use 'luk400/vim-jukit'
 
-        use 'christoomey/vim-tmux-navigator'
+        use {
+            'christoomey/vim-tmux-navigator',
+            init = function()
+                vim.g.tmux_navigator_no_mappings = 1
+            end,
+            config = function()
+                vim.keymap.set('n', '<C-h>',  ':TmuxNavigateLeft<CR>', {silent = true, noremap = true})
+                vim.keymap.set('n', '<C-k>',  ':TmuxNavigateUp<CR>', {silent = true, noremap = true})
+                vim.keymap.set('n', '<C-l>',  ':TmuxNavigateRight<CR>', {silent = true, noremap = true})
+                vim.keymap.set('n', '<C-x>',  ':TmuxNavigateDown<CR>', {silent = true, noremap = true})
+            end,
+        }
 
         use '907th/vim-auto-save'
 
