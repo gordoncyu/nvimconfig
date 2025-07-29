@@ -31,7 +31,7 @@ local custom_add_file = function(state)
 
     local full_path = parent_path .. "/" .. input_name
     local file = io.open(full_path, "w")
-    if file then 
+    if file then
         file:close()
         print("Created: " .. full_path)
     end
@@ -69,11 +69,11 @@ local custom_add_directory = function(state)
 
     require("neo-tree.sources.manager").refresh("filesystem")
 
-    -- Move cursor to the newly created directory  
+    -- Move cursor to the newly created directory
     vim.defer_fn(function()
         require("neo-tree.command").execute({
             action = "focus",
-            source = "filesystem", 
+            source = "filesystem",
             position = "current",
             reveal_file = full_path,
         })
@@ -85,7 +85,7 @@ _G.neotree_bookmarks = _G.neotree_bookmarks or {}
 
 -- I don't actually know if all of these bindings work, claude just gave them to me so ¯\_(ツ)_/¯
 local my_nt_mappings = {
-    -- Ranger-style navigation 
+    -- Ranger-style navigation
     -- already default
     -- ["j"] = "next_node",                 -- ranger: j - down
     -- ["k"] = "prev_node",                 -- ranger: k - up
@@ -125,7 +125,7 @@ local my_nt_mappings = {
     -- File operations (ranger-style)
     ["<CR>"] = "open",                   -- ranger: <CR> - open
     ["<C-v>"] = "open_vsplit",          -- ranger: <C-v> - vertical split
-    ["<C-x>"] = "open_split",           -- ranger: <C-x> - horizontal split
+    -- ["<C-x>"] = "open_split",           -- ranger: <C-x> - horizontal split
     ["<C-t>"] = "open_tabnew",          -- ranger: <C-t> - new tab
 
     -- File management (ranger-style)
@@ -137,20 +137,20 @@ local my_nt_mappings = {
             local node = state.tree:get_node()
             if node.type == "file" then
                 local current_name = vim.fn.fnamemodify(node.path, ":t")
-                
-                vim.ui.input({ 
+
+                vim.ui.input({
                     prompt = "Rename to: ",
                     default = current_name  -- Pre-fill with current name
                 }, function(new_name)
                     if new_name and new_name ~= "" and new_name ~= current_name then
                         local parent_dir = vim.fn.fnamemodify(node.path, ":h")
                         local new_path = parent_dir .. "/" .. new_name
-                        
+
                         -- Rename the file
                         local success = vim.loop.fs_rename(node.path, new_path)
                         if success then
                             require("neo-tree.sources.manager").refresh("filesystem")
-                            
+
                             -- Navigate to renamed file
                             vim.defer_fn(function()
                                 require("neo-tree.command").execute({
@@ -225,7 +225,7 @@ local my_nt_mappings = {
         function(state)
             local node = state.tree:get_node()
             local path = node.path
-            
+
             -- Get single character for bookmark
             local char = vim.fn.getcharstr()
             if char:match("[a-zA-Z0-9]") then
@@ -244,7 +244,7 @@ local my_nt_mappings = {
             -- Get single character for bookmark to go to
             local char = vim.fn.getcharstr()
             local path = _G.neotree_bookmarks[char]
-            
+
             if path then
                 -- Check if bookmarked path still exists
                 if vim.fn.isdirectory(path) == 1 or vim.fn.filereadable(path) == 1 then
@@ -272,13 +272,13 @@ local my_nt_mappings = {
             -- Same as ' but with backtick (ranger uses both)
             local char = vim.fn.getcharstr()
             local path = _G.neotree_bookmarks[char]
-            
+
             if path then
                 if vim.fn.isdirectory(path) == 1 or vim.fn.filereadable(path) == 1 then
                     require("neo-tree.command").execute({
                         action = "focus",
                         source = "filesystem",
-                        position = "current", 
+                        position = "current",
                         reveal_file = path,
                     })
                     local name = vim.fn.fnamemodify(path, ":t")
@@ -301,7 +301,7 @@ local my_nt_mappings = {
                 print("No bookmarks set")
                 return
             end
-            
+
             print("Bookmarks:")
             for char, path in pairs(_G.neotree_bookmarks) do
                 local name = vim.fn.fnamemodify(path, ":t")

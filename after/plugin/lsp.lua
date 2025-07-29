@@ -1,5 +1,5 @@
 require('neodev').setup({
-    library = { plugins = { "nvim-dap-ui" }, types = true },
+    library = { plugins = {}, types = true },
 })
 
 local lsp_zero = require('lsp-zero');
@@ -28,14 +28,13 @@ lsp_zero.on_attach(function(client, bufnr)
     vim.keymap.set("n", "<leader>vws", function() tbuiltin.lsp_workspace_symbols() end, get_opts("view symbols project-wide"))
     vim.keymap.set("n", "<leader>vca", function() vim.lsp.buf.code_action() end, get_opts("view code actions"))
     vim.keymap.set("n", "<leader>vs", function() vim.lsp.buf.signature_help() end, get_opts("view signature"))
-    vim.keymap.set("n", "[d", function() vim.diagnostic.goto_next() end, get_opts("go to next diagnostic"))
-    vim.keymap.set("n", "]d", function() vim.diagnostic.goto_prev() end, get_opts("go to previous diagnostic"))
+    vim.keymap.set("n", "]d", function() vim.diagnostic.goto_next() end, get_opts("go to next diagnostic"))
+    vim.keymap.set("n", "[d", function() vim.diagnostic.goto_prev() end, get_opts("go to previous diagnostic"))
     vim.keymap.set("n", "<leader>rn", function() vim.lsp.buf.rename() end, get_opts("rename symbol"))
 end)
 
 require("mason").setup()
 require("mason-lspconfig").setup {
-    ensure_installed = { 'ts_ls', 'eslint', 'jsonls', 'jdtls', 'lua_ls', 'pyright', 'rust_analyzer', 'clangd'},
     handlers = {
         lsp_zero.default_setup,
         jdtls = lsp_zero.noop,
@@ -53,23 +52,23 @@ local cmp_mappings = lsp_zero.defaults.cmp_mappings({
 
 local luasnip = require('luasnip')
 
--- vim.keymap.set('i', '<C-s><Tab>', function() 
+-- vim.keymap.set('i', '<C-s><Tab>', function()
 --     luasnip.jump(1)
 -- end, {desc="luasnip jump to next"})
 --
--- vim.keymap.set('i', '<C-s><S-Tab>', function() 
+-- vim.keymap.set('i', '<C-s><S-Tab>', function()
 --     luasnip.jump(-1)
 -- end, {desc="luasnip jump to previous"})
 --
--- vim.keymap.set({'n', 'c', 'i'}, '<C-s><C-a>', function() 
---     cmp.abort() 
+-- vim.keymap.set({'n', 'c', 'i'}, '<C-s><C-a>', function()
+--     cmp.abort()
 -- end, {desc="abort completion"})
 
-vim.keymap.set('i', '<C-s>', function() 
+vim.keymap.set('i', '<C-s>', function()
     luasnip.jump(1)
 end, {desc="luasnip jump to next"})
 
--- vim.keymap.set('i', '<C-S>', function() 
+-- vim.keymap.set('i', '<C-S>', function()
 --     luasnip.jump(-1)
 -- end, {desc="luasnip jump to previous"})
 

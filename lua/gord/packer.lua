@@ -32,14 +32,6 @@ return packer.startup {
         use {
             'glacambre/firenvim',
             run = ':call firenvim#install(0)',
-            config = function ()
-                vim.g.firenvim_config = {
-                    globalSettings = { alt = "all" },
-                    localSettings = {
-                        [".*.?"] = {takeover = 'never', priority = 1000},
-                    }
-                }
-            end
         }
 
         use{
@@ -54,40 +46,14 @@ return packer.startup {
 
         use {
             'bronson/vim-crosshairs',
-            config = function ()
-                local cross_on = true
-                vim.opt.cursorline = cross_on
-                vim.opt.cursorcolumn = cross_on
-                vim.keymap.set({'n', 'x'}, "<leader>toc", function()
-                            cross_on = not cross_on
-                            vim.opt.cursorline = cross_on
-                            vim.opt.cursorcolumn = cross_on
-                end, {desc="toggle cursor crosshair"})
-            end,
         }
 
         use {
             "folke/which-key.nvim",
-            config = function()
-            vim.o.timeout = true
-            vim.o.timeoutlen = 300
-            require("which-key").setup()
-            end
         }
 
         use {
             'declancm/maximize.nvim',
-            config = function() 
-                mxm = require('maximize')
-                mxm.setup({
-                    plugins = {
-                        aerial = { enable = false }, -- enable aerial.nvim integration
-                        dapui = { enable = false },  -- enable nvim-dap-ui integration
-                        tree = { enable = false },   -- enable nvim-tree.lua integration
-                    }
-                }) 
-                vim.keymap.set({'n', 'v', 's'}, "<leader>z", mxm.toggle, {desc="toggle ZenMode"})
-            end
         }
 
         -- use {
@@ -122,9 +88,6 @@ return packer.startup {
 
         use {
             'cameron-wags/rainbow_csv.nvim',
-            config = function()
-                require('rainbow_csv').setup()
-            end,
             ft = {
                 'csv',
                 'tsv',
@@ -146,17 +109,10 @@ return packer.startup {
             'Bekaboo/dropbar.nvim',
             -- optional: fuzzy‑find inside the breadcrumb menus
             requires = { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' },
-
-            config = function()
-                require('dropbar').setup()
-            end,
         })
 
         use {
             'rcarriga/nvim-notify',
-            config = function ()
-                vim.notify = require("notify")
-            end
         }
 
         use {
@@ -176,9 +132,6 @@ return packer.startup {
         use 'theprimeagen/harpoon'
         use {
             'theprimeagen/git-worktree.nvim',
-            config = function ()
-                require("git-worktree").setup()
-            end,
         }
         use 'mbbill/undotree'
         use 'tpope/vim-fugitive'
@@ -198,20 +151,6 @@ return packer.startup {
             }
         }
 
-        use 'mfussenegger/nvim-jdtls'
-        use 'hdiniz/vim-gradle'
-
-        use {
-            "mfussenegger/nvim-dap",
-            dependencies = {
-                "theHamsta/nvim-dap-virtual-text",
-                "rcarriga/nvim-dap-ui",
-            },
-        }
-        use 'mfussenegger/nvim-dap-ui'
-        use 'theHamsta/nvim-dap-virtual-text'
-        use 'jay-babu/mason-nvim-dap.nvim'
-
         -- move visual selection
         use 'echasnovski/mini.move'
         use 'kylechui/nvim-surround'
@@ -220,9 +159,6 @@ return packer.startup {
         use 'numToStr/Comment.nvim'
         use {
             'tummetott/unimpaired.nvim',
-            config = function ()
-                require('unimpaired').setup()
-            end
         }
         -- unix commands integrated
         use 'tpope/vim-repeat'
@@ -265,48 +201,6 @@ return packer.startup {
         use 'ThePrimeagen/vim-be-good'
 
         use 'luk400/vim-jukit'
-
-        use {
-            'christoomey/vim-tmux-navigator',
-            init = function()
-                vim.g.tmux_navigator_no_mappings = 1
-            end,
-            config = function()
-                vim.keymap.set('n', '<C-h>',  ':TmuxNavigateLeft<CR>', {silent = true, noremap = true})
-                vim.keymap.set('n', '<C-k>',  ':TmuxNavigateUp<CR>', {silent = true, noremap = true})
-                vim.keymap.set('n', '<C-l>',  ':TmuxNavigateRight<CR>', {silent = true, noremap = true})
-                vim.keymap.set('n', '<C-x>',  ':TmuxNavigateDown<CR>', {silent = true, noremap = true})
-            end,
-        }
-
-        use '907th/vim-auto-save'
-
-        use {
-            'barrett-ruth/live-server.nvim',
-            build = 'npm add -g live-server',
-            cmd = { 'LiveServerStart', 'LiveServerStop' },
-            config = function ()
-                require('live-server').setup()
-            end
-        }
-
-        use {
-            "iamcco/markdown-preview.nvim",
-            run = "cd app && npm install",
-            setup = function()
-                vim.g.mkdp_filetypes = { "markdown" }
-            end,
-            ft = { "markdown" },
-        }
-        -- use {
-        --     "adalessa/markdown-preview.nvim",
-        --     requires = {
-        --         "nvim-lua/plenary.nvim",
-        --     },
-        --     config = function()
-        --         require("markdown-preview").setup()
-        --     end,
-        -- }
 
     end,
     config = {

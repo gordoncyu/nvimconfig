@@ -1,3 +1,5 @@
+require("git-worktree").setup()
+
 vim.api.nvim_create_user_command(
     "Cgwt",
     function(opts)

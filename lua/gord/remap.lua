@@ -115,3 +115,15 @@ vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true, desc="
 -- gonil
 vim.keymap.set("n", "<leader>sgn", "oif err != nil {<CR>}<Esc>kA<CR>", {desc="input err != nil snippet"})
 
+-- in abscense of vim-tmux-navigator
+vim.keymap.set('n', '<C-h>',  '<C-w>h', {silent = true, noremap = true})
+vim.keymap.set('n', '<C-k>',  '<C-w>k', {silent = true, noremap = true})
+vim.keymap.set('n', '<C-l>',  '<C-w>l', {silent = true, noremap = true})
+vim.keymap.set('n', '<C-x>',  '<C-w>j', {silent = true, noremap = true})
+
+vim.api.nvim_create_autocmd("FileType", {
+    pattern = "netrw",
+    callback = function()
+        vim.keymap.set("n", "<C-l>", "<C-w>l", { buffer = true, noremap = true })
+    end,
+})

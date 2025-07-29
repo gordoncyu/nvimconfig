@@ -1,3 +1,5 @@
+vim.notify = require("notify")
+
 local nutils = require("notify_utils")
 
 vim.keymap.set({'n', 'x'}, '<leader>vnq', function() require('telescope').extensions.notify.notify() end, {desc = "View notifications in telescope"})
