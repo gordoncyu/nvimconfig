@@ -183,21 +183,6 @@ return packer.startup {
         use 'mbbill/undotree'
         use 'tpope/vim-fugitive'
 
-        use {
-            'VonHeikemen/lsp-zero.nvim',
-            branch = 'v3.x',
-            requires = {
-                -- LSP Support
-                { 'neovim/nvim-lspconfig' },             -- Required
-                { 'williamboman/mason.nvim' },           -- Optional
-                { 'williamboman/mason-lspconfig.nvim' }, -- Optional
-                -- Autocompletion
-                { 'hrsh7th/nvim-cmp' },     -- Required
-                { 'hrsh7th/cmp-nvim-lsp' }, -- Required
-                { 'L3MON4D3/LuaSnip' },     -- Required
-            }
-        }
-
         use 'mfussenegger/nvim-jdtls'
         use 'hdiniz/vim-gradle'
 
@@ -239,16 +224,17 @@ return packer.startup {
             },
         }
 
-        use 'ggandor/leap.nvim'
+        use 'https://codeberg.org/andyg/leap.nvim'
 
         -- blessing upon this world
         use 'unblevable/quick-scope'
         use 'lukas-reineke/indent-blankline.nvim'
 
         -- nvim lsp
-        use 'folke/neodev.nvim'
         use 'bfredl/nvim-luadev'
         use 'neovim/nvim-lspconfig'
+        use 'williamboman/mason.nvim'
+        use 'williamboman/mason-lspconfig.nvim'
         use 'hrsh7th/cmp-nvim-lsp'
         use 'hrsh7th/cmp-nvim-lsp-signature-help'
         use 'hrsh7th/cmp-buffer'
