@@ -6,10 +6,15 @@ local capabilities = vim.tbl_deep_extend('force',
     require('cmp_nvim_lsp').default_capabilities()
 )
 
--- Global config: on_attach keymaps + capabilities applied to all servers
+-- Global capabilities for all servers
 vim.lsp.config('*', {
     capabilities = capabilities,
-    on_attach = function(client, bufnr)
+})
+
+-- LspAttach fires for every client regardless of server-level on_attach overrides
+vim.api.nvim_create_autocmd('LspAttach', {
+    callback = function(ev)
+        local bufnr = ev.buf
         local function opts(desc)
             return { buffer = bufnr, remap = false, desc = desc }
         end
