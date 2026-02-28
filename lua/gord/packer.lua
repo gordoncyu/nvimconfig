@@ -164,7 +164,6 @@ return packer.startup {
             run = ':TSUpdate'
         }
 
-        use 'nvim-treesitter/playground'
         use'nvim-treesitter/nvim-treesitter-context'
         use {
             "nvim-treesitter/nvim-treesitter-textobjects",
