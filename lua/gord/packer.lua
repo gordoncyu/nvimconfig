@@ -165,11 +165,8 @@ return packer.startup {
         }
 
         use'nvim-treesitter/nvim-treesitter-context'
-        use {
-            "nvim-treesitter/nvim-treesitter-textobjects",
-            after = "nvim-treesitter",
-            requires = "nvim-treesitter/nvim-treesitter",
-        }
+        use "nvim-treesitter/nvim-treesitter-textobjects"
+        use "mks-h/treesitter-autoinstall.nvim"
         use "chrisgrieser/nvim-various-textobjs"
         -- use 'nvim-treesitter/nvim-treesitter-context'
         use 'theprimeagen/harpoon'
