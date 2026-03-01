@@ -241,6 +241,11 @@ return packer.startup {
         use 'saadparwaiz1/cmp_luasnip'
         use 'petertriho/cmp-git'
 
+        use {
+            'jmbuhr/otter.nvim',
+            requires = { 'nvim-treesitter/nvim-treesitter' },
+        }
+
         use 'sustech-data/wildfire.nvim'
 
         use 'ThePrimeagen/vim-be-good'
