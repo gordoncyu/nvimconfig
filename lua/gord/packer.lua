@@ -108,8 +108,7 @@ return packer.startup {
         use 'JellyApple102/flote.nvim'
 
         use {
-            'nvim-telescope/telescope.nvim', tag = '0.1.2',
-            -- or                            , branch = '0.1.x',
+            'nvim-telescope/telescope.nvim',
             requires = { { 'nvim-lua/plenary.nvim' } }
         }
 
