@@ -17,13 +17,15 @@ local function activate_otter()
         require('otter').activate({ 'javascript', 'css' }, true, true)
     elseif ft == 'markdown' then
         require('otter').activate(nil, true, true)
+    elseif ft == 'python' then
+        require('otter').activate(nil, true, true)
     end
 end
 
 -- BufEnter covers both: re-entering an already-open buffer and opening new ones.
 -- This also handles the case where FileType fired before this file was sourced.
 vim.api.nvim_create_autocmd('BufEnter', {
-    pattern = { '*.md', '*.html' },
+    pattern = { '*.md', '*.html', '*.py', '*.pyi' },
     callback = activate_otter,
     desc = 'Activate otter.nvim for embedded code blocks',
 })
