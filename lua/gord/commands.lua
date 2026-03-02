@@ -80,14 +80,17 @@ endfunction
 command! -bang BD call DeleteBufferKeepPane(<bang>0 == '' ? 0 : 1)
 ]])
 
+local function is_otter_buf(buf)
+    return vim.api.nvim_buf_get_name(buf):match('%.otter%.[^.]+$') ~= nil
+end
+
 local function add_unwritten_buffers_to_qfl()
     local buffers = vim.api.nvim_list_bufs()
     local qf_list = {}
     for _, buf in ipairs(buffers) do
         if vim.api.nvim_buf_get_option(buf, 'modified') then
             local buftype = vim.bo[buf].buftype
-            if buftype == '' or buftype == 'acwrite' then
-                print"+actual1"
+            if (buftype == '' or buftype == 'acwrite') and not is_otter_buf(buf) then
                 local bufname = vim.api.nvim_buf_get_name(buf)
                 table.insert(qf_list, {
                     bufnr = buf,
@@ -111,40 +114,15 @@ end
 vim.api.nvim_create_user_command('Cleanunwr', add_unwritten_buffers_to_qfl, {})
 
 local function would_qa_fail()
-    -- Check for modified buffers
-    local has_modified = false
     for _, buf in ipairs(vim.api.nvim_list_bufs()) do
-        if vim.api.nvim_buf_is_loaded(buf) and vim.bo[buf].modified then
-            has_modified = true
-            break
-        end
-    end
-    
-    -- Check for running jobs/terminals
-    local has_running_jobs = false
-    for _, buf in ipairs(vim.api.nvim_list_bufs()) do
-        if vim.api.nvim_buf_is_loaded(buf) and vim.bo[buf].buftype == 'terminal' then
-            local job_id = vim.b[buf].terminal_job_id
-            if job_id and vim.fn.jobwait({job_id}, 0)[1] == -1 then
-                has_running_jobs = true
-                break
+        if vim.api.nvim_buf_is_loaded(buf) and vim.bo[buf].modified and not is_otter_buf(buf) then
+            local buftype = vim.bo[buf].buftype
+            if buftype ~= 'terminal' then
+                return true
             end
         end
     end
-    
-    -- Check for unsaved files without names (like [No Name] buffers)
-    local has_unnamed_modified = false
-    for _, buf in ipairs(vim.api.nvim_list_bufs()) do
-        if vim.api.nvim_buf_is_loaded(buf) and vim.bo[buf].modified then
-            local name = vim.api.nvim_buf_get_name(buf)
-            if name == "" then
-                has_unnamed_modified = true
-                break
-            end
-        end
-    end
-    
-    return has_modified or has_running_jobs or has_unnamed_modified
+    return false
 end
 
 vim.api.nvim_create_user_command('QA', function()
