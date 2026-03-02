@@ -54,8 +54,15 @@ require("mason-lspconfig").setup({
     ensure_installed = { 'ts_ls', 'eslint', 'jsonls', 'jdtls', 'lua_ls', 'basedpyright', 'rust_analyzer', 'clangd' },
 })
 
--- Enable mason-managed servers (jdtls excluded — handled by nvim-jdtls)
-vim.lsp.enable({ 'ts_ls', 'eslint', 'jsonls', 'lua_ls', 'basedpyright', 'rust_analyzer', 'clangd' })
+-- Auto-enable all mason-installed servers (jdtls excluded — handled by nvim-jdtls)
+local to_enable = vim.tbl_filter(
+    function(s) return s ~= 'jdtls' end,
+    require('mason-lspconfig').get_installed_servers()
+)
+
+-- print("Enabling: " .. PSTR(to_enable))
+
+vim.lsp.enable(to_enable)
 
 -- Non-mason servers (only enable if the executable is present)
 local non_mason = {
