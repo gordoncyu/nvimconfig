@@ -20,7 +20,8 @@ vim.api.nvim_create_autocmd('LspAttach', {
         end
 
         vim.keymap.set("n", "gd", function() tbuiltin.lsp_definitions() end, opts("go to definition"))
-        vim.keymap.set("n", "gi", function() tbuiltin.lsp_implementations() end, opts("go to definition"))
+        vim.keymap.set("n", "gi", function() tbuiltin.lsp_implementations() end, opts("go to implementations"))
+        vim.keymap.set("n", "<leader>vtd", function() tbuiltin.lsp_type_definitions() end, opts("go to type definition"))
         vim.keymap.set("n", "gr", function() tbuiltin.lsp_references() end, opts("go to references"))
         vim.keymap.set("n", "gc", function() tbuiltin.lsp_incoming_calls() end, opts("go to function calls"))
         vim.keymap.set("n", "K", function() vim.lsp.buf.hover() end, opts("show symbol details"))
