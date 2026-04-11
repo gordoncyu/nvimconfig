@@ -1,4 +1,3 @@
-require("gord.packer")
 require("gord.remap")
 require("gord.commands")
 require("gord.set")

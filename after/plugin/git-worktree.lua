@@ -1,3 +1,5 @@
+require("git-worktree").setup()
+
 vim.api.nvim_create_user_command(
     "Cgwt",
     function(opts)
@@ -51,4 +53,3 @@ end, { noremap = true, silent = true, desc = "Create git worktree using Telescop
 vim.keymap.set('n', '<leader>gwm', function()
     require('telescope').extensions.git_worktree.git_worktrees()
 end, { noremap = true, silent = true, desc = "List git worktrees using Telescope" })
-

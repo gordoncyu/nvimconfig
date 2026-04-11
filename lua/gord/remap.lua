@@ -48,8 +48,6 @@ local function toggle_diagnostic_underline()
 end
 
 vim.keymap.set('n', '<leader>todu', toggle_diagnostic_underline, { noremap = true, silent = true, desc="toggle diagnostic underlines" })
-                vim.opt.cursorline = true
-                vim.opt.cursorcolumn = true
 
 
 -- tab things
