@@ -16,7 +16,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
     callback = function(ev)
         local bufnr = ev.buf
         local function opts(desc)
-            return { buffer = bufnr, remap = false, desc = desc }
+            return { buf = bufnr, remap = false, desc = desc }
         end
 
         vim.keymap.set("n", "gd", function() tbuiltin.lsp_definitions() end, opts("go to definition"))
@@ -31,9 +31,10 @@ vim.api.nvim_create_autocmd('LspAttach', {
         vim.keymap.set("n", "<leader>vws", function() tbuiltin.lsp_workspace_symbols() end, opts("view symbols project-wide"))
         vim.keymap.set("n", "<leader>vca", function() vim.lsp.buf.code_action() end, opts("view code actions"))
         vim.keymap.set("n", "<leader>vs", function() vim.lsp.buf.signature_help() end, opts("view signature"))
-        vim.keymap.set("n", "]d", function() vim.diagnostic.goto_next() end, opts("go to next diagnostic"))
-        vim.keymap.set("n", "[d", function() vim.diagnostic.goto_prev() end, opts("go to previous diagnostic"))
+        vim.keymap.set("n", "]d", function() vim.diagnostic.jump({ count = 1, float = true }) end, opts("go to next diagnostic"))
+        vim.keymap.set("n", "[d", function() vim.diagnostic.jump({ count = -1, float = true }) end, opts("go to previous diagnostic"))
         vim.keymap.set("n", "<leader>rn", function() vim.lsp.buf.rename() end, opts("rename symbol"))
+        vim.keymap.set("i", "<C-s>", function() require('luasnip').jump(1) end, opts("luasnip jump to next"))
     end,
 })
 
@@ -53,17 +54,10 @@ vim.lsp.config('lua_ls', {
 require("mason").setup()
 require("mason-lspconfig").setup({
     ensure_installed = { 'ts_ls', 'eslint', 'jsonls', 'jdtls', 'lua_ls', 'basedpyright', 'rust_analyzer', 'clangd' },
+    automatic_enable = {
+        exclude = { 'jdtls' },
+    },
 })
-
--- Auto-enable all mason-installed servers (jdtls excluded — handled by nvim-jdtls)
-local to_enable = vim.tbl_filter(
-    function(s) return s ~= 'jdtls' end,
-    require('mason-lspconfig').get_installed_servers()
-)
-
--- print("Enabling: " .. PSTR(to_enable))
-
-vim.lsp.enable(to_enable)
 
 -- Non-mason servers (only enable if the executable is present)
 local non_mason = {
@@ -78,8 +72,9 @@ for _, s in ipairs(non_mason) do
     end
 end
 
--- Diagnostic sign icons
+-- Diagnostic config: re-enable virtual text (off by default since v0.11)
 vim.diagnostic.config({
+    virtual_text = true,
     signs = {
         text = {
             [vim.diagnostic.severity.ERROR] = '✘',
